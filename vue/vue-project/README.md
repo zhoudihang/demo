@@ -1,4 +1,4 @@
-# 基于my-project修改
+# 基于vue my-project修改
 
 > A Vue.js project
 
