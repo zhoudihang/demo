@@ -1,0 +1,99 @@
+<!-- 登录信息模块  -->
+<view>
+
+  <block wx:if="{{userInfo == '' || userInfo == null}}">
+    <!-- 未登录 -->
+    <view class='login_model'>
+      <view class='nologin_view'>
+        <navigator class='nologin_login' url='../phone/phone?type=login'>免注册登录</navigator>
+      </view>
+    </view>
+  </block>
+  <block wx:else>
+    <!-- 登录  -->
+    <view class='login_view'>
+      <view class='login_top'>
+        <image class="login_head" src="{{userInfo.headUrl}}" bindtap='gotoInfo'></image>
+        <text class="login_name">{{userInfo.nickname}}</text>
+      </view>
+      <view class='login_bottom'>
+        <view class='login_bottom_miandan'>
+          <image class='miandan_img' src='../../images/mine_miandan.png' bindtap='gotoRecord'></image>
+          <text class='miandan_text'>我的免单</text>
+        </view>
+        <view class='login_bottom_miandan'>
+          <image class='miandan_img' src='../../images/mine_xingyunzhi.png'></image>
+          <text class='miandan_text'>幸运值:{{userInfo.luckyValue}}</text>
+        </view>
+        <view class='login_bottom_miandan'>
+          <image class='miandan_img' src='../../images/mine_dianshu.png'></image>
+          <text class='miandan_text'>兑换点数:{{userInfo.exchangeValue}}</text>
+        </view>
+      </view>
+    </view>
+  </block>
+
+</view>
+
+<!-- 分割线  -->
+<view class="split-model"></view>
+
+<!-- 功能列表模块  -->
+<view class='function_model'>
+
+  <!-- 功能按钮分割线  -->
+  <navigator class='function_view' url='../watergas/watergas'>
+    <image class='function_logo' src='../../images/mine_onekey.png'></image>
+    <view class='function_list'>送水送气</view>
+    <image class='next_logo' src="../../images/next.png"></image>
+  </navigator>
+
+
+  <!-- 功能按钮分割线  -->
+  <view class="function-split"></view>
+
+  <navigator class='function_view' url='../wallet/wallet'>
+    <image class='function_logo' src='../../images/mine_wallet.png'></image>
+    <view class='function_list'>
+      <text class='function_text'>我的钱包</text>
+    </view>
+    <view class='topup_button'>充值</view>
+    <image class='next_logo_other' src="../../images/next.png"></image>
+  </navigator>
+
+  <!-- 功能按钮分割线  -->
+  <view class="function-split"></view>
+
+  <navigator class='function_view' url='../address/address'>
+    <image class='function_logo' src='../../images/mine_address.png'></image>
+    <view class='function_list'>我的地址</view>
+    <image class='next_logo' src="../../images/next.png"></image>
+  </navigator>
+  <!-- 功能按钮分割线  -->
+<view class="function-split"></view>
+<view class='function_view' bindtap='share'>
+    <image class='function_logo' src='../../images/share.png'></image>
+    <view class='function_list'>邀请好友</view>
+    <image class='next_logo' src="../../images/next.png"></image>
+  </view>
+  <!-- 功能按钮分割线  -->
+  <view class="function-split"></view>
+
+  <navigator class='function_view' url='../about/about'>
+    <image class='function_logo' src='../../images/mine_about.png'></image>
+    <view class='function_list'>关于免啦</view>
+    <image class='next_logo' src="../../images/next.png"></image>
+  </navigator>
+
+
+  <!-- 功能按钮分割线  -->
+  <view class="function-split"></view>
+
+  <view class='function_view' bindtap='callPhone' hover-class='navigator-hover'>
+    <image class='function_logo' src='../../images/mine_kefu.png'></image>
+    <view class='function_list'>联系客服</view>
+    <image class='next_logo' src="../../images/next.png"></image>
+  </view>
+
+
+</view>

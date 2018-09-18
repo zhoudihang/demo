@@ -1,0 +1,121 @@
+.container {
+  background: #f8f8f8;
+  height: 100vh;
+  width: 100%;
+}
+
+.topup_top {
+  height: 18%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin: 8px 18px;
+}
+
+.top_title {
+  position: absolute;
+  top: 20%;
+  left: 10%;
+  color: #fff;
+  font-size: 28rpx;
+}
+
+.top_money {
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  color: #fff;
+  font-size: 38rpx;
+}
+
+.top_background {
+  width: 100%;
+  height: 100%;
+}
+
+.top_ring {
+  height: 80rpx;
+  width: 100rpx;
+  position: absolute;
+  top: 25%;
+  right: 8%;
+}
+
+.topup_money {
+  height: 8%;
+  background: white;
+  border-top: 3rpx solid #eee;
+  border-bottom: 3rpx solid #eee;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.money_left {
+  width: 50%;
+  font-size: 34rpx;
+  font-weight: 600;
+  color: #333;
+  margin-left: 18px;
+}
+
+.money_middle {
+  width: 35%;
+  font-size: 30rpx;
+  color: #ec304c;
+  text-align: right;
+}
+
+.money_right {
+  width: 5%;
+  font-size: 30rpx;
+  color: #333;
+}
+
+.topup_choose {
+  float: left;
+  width: 100%;
+}
+
+.choose_money {
+  height: 100rpx;
+  width: 200rpx;
+  float: left;
+  color: #999;
+  font-size: 36rpx;
+  border: 3rpx solid #999;
+  border-radius: 10rpx;
+  margin: 20rpx 20rpx 10rpx 25rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.choose {
+  border-color: #ff7672;
+  color: #ff7672;
+}
+
+.topup_button_view {
+  background: #f8f8f8;
+  margin-top: 300rpx;
+}
+
+.topup_button {
+  color: #fff;
+  font-size: 30rpx;
+  background: #ff6b67;
+  width: 93%;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-weight: 500;
+}
+
+.display {
+  display: none;
+}
+
+.other_money {
+  text-align: center;
+}

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+</head>
+<body>
+   <div id="imgContent" style="width: 300px;">
+	   <img src="http://file.igango.com/ads/20180305/8ed5c842fe90baf408b4b0456f52510f.gif">
+	   <img src="http://file.igango.com/ads/20180305/8ed5c842fe90baf408b4b0456f52510f.gif">
+   </div>
+  <script>
+       var imgContent = document.getElementById('imgContent');
+       var img = document.getElementsByTagName('img');
+       var wWidth = window.screen.availWidth;
+       var imgContentWidth = getStyle(imgContent,'width',true);
+       function getStyle(el,type,rmpx){
+            if(window.getComputedStyle){
+                  return rmpx?window.getComputedStyle(el)[type].split('px')[0]:window.getComputedStyle(el)[type];
+            }else{
+            	  return rmpx?el.currentStyle[type].split('px')[0]:el.currentStyle[type];
+            }
+       }
+       for(var i=0;i<img.length;i++){
+	       	   img[i].addEventListener('load',function(){
+		               if(Math.ceil(getStyle(this,'width',true))>Math.ceil(imgContentWidth)){
+		               	    this.style.width=imgContentWidth+'px'
+		               }
+		       },false)
+       }
+  </script>
+</body>
+</html>
