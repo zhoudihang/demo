@@ -6,7 +6,7 @@
     "pages/outerChain/index",
     "pages/topup/index",
     "pages/about/index",
-    "pages/error/index",
+    "pages/error/index"
   ],
   "window": {
     "navigationBarBackgroundColor": "#ff6b67",
@@ -42,7 +42,7 @@
         "selectedIconPath": "/images/shome.png"
       },
       {
-        "pagePath": "pages/mine/mine",
+        "pagePath": "pages/mine/index",
         "text": "我的",
         "iconPath": "/images/home.png",
         "selectedIconPath": "/images/shome.png"
