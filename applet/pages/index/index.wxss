@@ -1,0 +1,39 @@
+.menuTwo{
+  justify-content:center;
+  align-items: center;
+  width: 100%;
+  padding:10rpx 0;
+}
+.menuTwo .li{
+  border:1px solid #f1f1f1;
+  background: #f9f9f9;
+  width: 45.5%;
+  margin:0 1.5%;
+  height: 100rpx;
+  padding:20rpx 0;
+  justify-content: space-around;
+  align-items: center;
+}
+.menu{
+  padding:20rpx 0;
+}
+.menu .li .image,.menuTwo .li .image{
+  width: 100rpx;
+  height: 100rpx;
+}
+.menu .li .title{
+  margin-top:16rpx
+}
+.product .title{
+  width: 100%;
+  border-top:14rpx solid #f1f1f1;
+  border-bottom: 1rpx solid #f9f9f9;
+  padding:30rpx 0;
+}
+.product .title .alt{
+  padding:0 20rpx;
+}
+.product .title .icon image{
+width: 40rpx;
+height: 40rpx;
+}

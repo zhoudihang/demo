@@ -1,5 +1,50 @@
 <!--  -->
 
 <!--  -->
-
+<view class='menuTwo flex fs16'>
+    <view class='li flex'>
+       <view class='title fs16'>成为会员</view>
+       <image src='/images/shome.png' class='image'></image>
+    </view>
+    <view class='li flex'>
+       <view class='title fs16'>扫码获积分</view>
+       <image src='/images/shome.png' class='image'></image>
+    </view>
+</view>
+<!--  -->
+<view class='menu'>
+   <view class='ul t_center fs16 clearfix'>
+     <view class='li l w25'>
+         <image src='/images/shome.png' class='image'></image>
+         <view class='title fs16'>公司简介</view>
+     </view>
+     <view class='li l w25'>
+         <image src='/images/shome.png' class='image'></image>
+         <view class='title fs16'>授权查询</view>
+     </view>
+     <view class='li l w25'>
+         <image src='/images/shome.png' class='image'></image>
+         <view class='title fs16'>防伪查询</view>
+     </view>
+     <view class='li l w25'>
+         <image src='/images/shome.png' class='image'></image>
+         <view class='title fs16'>申请代理</view>
+     </view>
+   </view>
+</view>
+<!-- 产品中心 -->
+<view class='product'>
+   <view class='title flex flexCenter'>
+       <view class='icon'>
+          <image src='/images/shome.png' class='image'></image>
+       </view>
+       <view class='alt fs20'>产品中心</view>
+       <view class='icon'>
+          <image src='/images/shome.png' class='image'></image>
+       </view>       
+   </view>
+   <view class='goods'>
+        <view class='w33'></view>
+   </view>
+</view>
 <!--  -->
