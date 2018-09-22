@@ -1,0 +1,51 @@
+<view class='container'>
+
+  <view class='balance_view'>
+    <view class='balance_tittle'>我的余额(元)</view>
+    <block wx:if="{{userInfo}}">
+      <view class='balance_number'>{{userInfo.balance}}</view>
+    </block>
+    <block wx:else>
+      <view class='balance_number'>0.00</view>
+    </block>
+  </view>
+
+  <view class='item_list'>
+    <navigator class='each_item' url='../topup/topup'>
+      <view class='item_left'>
+        <image class='icon' src='/images/topup.png'></image>
+      </view>
+      <view class='item_middle'>
+        <text class='text'>充值</text>
+      </view>
+      <view class='item_right'>
+        <image class='next' src='/images/next.png'></image>
+      </view>
+    </navigator>
+    <view class='split_line'></view>
+    <navigator class='each_item' url="../transfer/transfer">
+      <view class='item_left'>
+        <image class='icon' src='/images/transfer.png'></image>
+      </view>
+      <view class='item_middle'>
+        <text class='text'>提现</text>
+      </view>
+      <view class='item_right'>
+        <image class='next' src='/images/next.png'></image>
+      </view>
+    </navigator>
+    <view class='split_line'></view>
+    <navigator class='each_item' url="../walletList/walletList">
+      <view class='item_left'>
+        <image class='icon' src='/images/detail.png'></image>
+      </view>
+      <view class='item_middle'>
+        <text class='text'>明细</text>
+      </view>
+      <view class='item_right'>
+        <image class='next' src='/images/next.png'></image>
+      </view>
+    </navigator>
+  </view>
+
+</view>

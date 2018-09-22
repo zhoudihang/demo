@@ -1,0 +1,61 @@
+<view class='container'>
+
+  <!-- 左边虚线 -->
+  <view class='refund_left_view'>
+  <!--  style='height:{{lineHigh}}px;margin-top:{{lineTop}}px;margin-left:{{lineLeft}}px' -->
+    <view class='left_line' style='height:{{lineHigh}}px;margin-top:{{lineTop}}px;'></view>
+  </view>
+
+  <!-- 右边退款内容 -->
+  <view class='refund_right_view'>
+    <!-- 订单已提交 -->
+    <view class='each_item_view'>
+      <view class='item_line1'>
+        <view class='line1_left'>
+          <view class='line_tips'></view>
+          <text>订单已提交</text>
+        </view>
+        <view class='line1_right'>{{order.orderTime}}</view>
+      </view>
+      <view class='item_line2'>请耐心等待商家确认</view>
+    </view>
+    <!-- 订单取消 -->
+    <view class='each_item_view'>
+      <view class='item_line1'>
+        <view class='line1_left'>
+          <view class='line_tips'></view>
+          <text>订单取消</text>
+        </view>
+        <view class='line1_right'>{{order.cancelTime}}</view>
+      </view>
+      <view class='item_line2'>您已取消：{{order.cancelReason}}</view>
+    </view>
+    <!-- <block wx:if="{{order.refundTime1!=null}}"> -->
+    <!-- 退款中 -->
+    <view class='each_item_view'>
+      <view class='item_line1'>
+        <view class='line1_left'>
+          <view class='line_tips'></view>
+          <text>退款中</text>
+        </view>
+        <view class='line1_right'>{{order.refundTime1}}</view>
+      </view>
+      <view class='item_line2'>您的退款正在审核，请耐心等待</view>
+    </view>
+    <!-- </block> -->
+    <block wx:if="{{order.refundTime2!=null}}">
+      <!-- 退款成功 -->
+      <view class='each_item_view'>
+        <view class='item_line1'>
+          <view class='line1_left'>
+            <view class='line_tips'></view>
+            <text>退款成功</text>
+          </view>
+          <view class='line1_right'>{{order.refundTime2}}</view>
+        </view>
+        <view class='item_line2'>您的退款将在1-15个工作日内原路返回到支付账号中， 请耐心等候</view>
+      </view>
+    </block>
+  </view>
+
+</view>

@@ -1,0 +1,99 @@
+.container {
+  width: 100%;
+  height: 100vh;
+  background: #f8f8f8;
+}
+
+.topup_status_view {
+  background: white;
+  height: 400rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 20rpx 20rpx;
+}
+
+.topup_icon {
+  width: 200rpx;
+  height: 200rpx;
+}
+
+.topup_title {
+  color: #333;
+  margin: 40rpx auto 20rpx auto;
+}
+
+.topup_money {
+  color: #999;
+}
+
+.button1 {
+  color: #fff;
+  background: #ff6b67;
+  width: 93%;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-weight: 500;
+}
+
+.button2 {
+  margin-top: 20rpx;
+  color: #ff6b67;
+  background: #f8f8f8;
+  width: 93%;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-weight: 500;
+}
+
+.button3 {
+  margin-top: 20rpx;
+  color: #fff;
+  background: #ff6b67;
+  width: 93%;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-weight: 500;
+}
+
+.button2::after {
+  border: 1px solid #ff6b67;
+}
+
+.transfer_info {
+  background: white;
+  margin: 0rpx 20rpx;
+}
+
+.transfer_account {
+  display: flex;
+  flex-direction: row;
+  padding-top: 20rpx;
+}
+
+.transfer_money {
+  display: flex;
+  flex-direction: row;
+  margin-top: 10rpx;
+}
+
+.transfer_rate {
+  display: flex;
+  flex-direction: row;
+  margin-top: 10rpx;
+  padding-bottom: 20rpx;
+}
+
+.info_left {
+  color: #999;
+  margin-left: 10rpx;
+  width: 30%;
+}
+
+.info_right {
+  color: #333;
+  width: 70%;
+  text-align: right;
+  margin-right: 10rpx;
+}

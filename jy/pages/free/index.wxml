@@ -1,0 +1,39 @@
+<view class='free'>
+    <view class='flex nouseFree' bindtap='noUseFree'>
+        <text class='fs16'>不使用免单券</text>
+        <image src='/images/success.png' class='chooseIcon' wx:if='{{isuseFree}}'></image>
+        <image src='/images/remove.png' class='chooseIcon' wx:else></image>
+    </view>
+    <view class='list'>
+        <view class='li relative' wx:for='{{myrecord}}' wx:key='key'>
+            <view class='{{!item.belongThisShop||!item.ableToUse?"opacity":""}}'>
+	            <view class='storename fs18'>
+	               {{item.shop.name}}
+	            </view>
+	            <view class='goodsname fs14'>{{item.freemealProduct.name}}</view>
+	            <view class='validTime fs12'>{{item.validTime}}到期</view>
+            </view>
+            <view class='absolute chooseIconView' wx:if='{{item.belongThisShop&&item.ableToUse&&item.active}}'
+                   bindtap='chooseFree'
+                  data-goodsid='{{item.freemealProduct.productId}}' 
+                  data-couponid='{{item.id}}'
+                  data-activestatus='{{item.activeStatus}}'
+            >
+                <image src='/images/success.png' class='chooseIcon'></image>
+            </view>
+           <view class='absolute chooseIconView' wx:if='{{item.belongThisShop&&item.ableToUse&&!item.active}}'
+                   bindtap='chooseFree'
+                  data-goodsid='{{item.freemealProduct.productId}}' 
+                  data-activestatus='{{item.activeStatus}}'
+                  data-couponid='{{item.id}}'
+           >
+                <image src='/images/remove.png' class='chooseIcon'></image>
+            </view>
+            <view class='toStore absolute fs10 t_center'
+                  bindtap='toStore' 
+                  data-shopid='{{item.shop.id}}'
+                  wx:if='{{!item.belongThisShop}}'
+                  >进店使用</view>
+        </view>
+    </view>
+</view>

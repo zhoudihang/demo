@@ -1,0 +1,78 @@
+.line_view {
+  height: 100rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.line_left {
+  width: 25%;
+  margin-left: 50rpx;
+  font-size: 30rpx;
+  font-weight: 500;
+  color: #333;
+}
+
+.line_right {
+  width: 75%;
+  font-size: 30rpx;
+  font-weight: 500;
+  color: #333;
+}
+
+.gender_radio {
+  font-size: 30rpx;
+}
+
+.gender_radio radio {
+  transform: scale(0.6);
+}
+
+.male_label {
+  margin-left: -20rpx;
+  margin-right: 50rpx;
+}
+
+.position_icon {
+  width: 40rpx;
+  height: 40rpx;
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+}
+
+.address-split {
+  height: 5rpx;
+  background: #f8f8f8;
+}
+
+.address_button {
+  padding-top: 50rpx;
+  height: 800rpx;
+  background: #f8f8f8;
+}
+
+.address_button_save {
+  color: #fff;
+  background: #ff6b67;
+  width: 90%;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 30rpx;
+  font-weight: 500;
+}
+
+.address_button_delete {
+  color: #ff6b67;
+  background: #fff;
+  width: 90%;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 30rpx;
+  font-weight: 500;
+  margin-top: 30rpx;
+  border: 2rpx solid #ff6b67;
+}
+
+.hide {
+  display: none;
+}

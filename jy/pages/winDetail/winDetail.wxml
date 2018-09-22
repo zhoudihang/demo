@@ -1,0 +1,71 @@
+<view class='container'>
+  <view class='split_line'></view>
+  <!-- 商家商品信息 -->
+  <navigator class='info_view' url='../store/index?id={{record.shop.id}}'>
+    <view class='info_left'>
+      <block wx:if="{{record.shop.logoUrl==''||record.shop.logoUrl}}">
+        <image class='shop_logo' src='{{record.shop.logoUrl}}'></image>
+      </block>
+      <block wx:else>
+        <image class='shop_logo' src='/images/default_logo.png'></image>
+      </block>
+    </view>
+    <view class='info_middle'>
+      <text class='info_line1'>{{record.shop.name}}</text>
+      <text class='info_line2'>{{record.freemealProduct.name}}</text>
+      <text class='info_line3'>需要使用{{record.freemealProduct.inviteNumber}}个兑换点数</text>
+    </view>
+    <view class='info_right'>
+      <image class='next_icon' src='/images/next.png'></image>
+    </view>
+  </navigator>
+
+  <view class='split_line'></view>
+  <!-- 二维码信息 -->
+  <view class='code_view'>
+    <canvas class='canvas' canvas-id='canvas'></canvas>
+    <block wx:if="{{record.exchangeStatus == 'NOTYET'}}">
+      <text class='code'>{{record.code}}</text>
+    </block>
+    <block wx:else>
+      <text class='code' style='text-decoration:line-through;'>{{record.code}}</text>
+    </block>
+  </view>
+  <view class='radius_view'>
+    <view class='radius_left'></view>
+    <view class='radius_split'></view>
+    <view class='radius_right'></view>
+  </view>
+
+  <!-- 时间信息 -->
+  <view class='time_view'>
+    <text class='time_line1 fs14'>截止日期：{{record.validTime}}</text>
+    <block wx:if="{{record.activeStatus == 'NOTYET'}}">
+      <text class='time_line2 fs14'>激活状态：未激活</text>
+    </block>
+    <block wx:else>
+      <text class='time_line2 fs14'>激活状态：已激活</text>
+    </block>
+    <block wx:if="{{record.exchangeStatus == 'NOTYET'}}">
+      <text class='time_line3 fs14'>兑换状态：未兑换</text>
+    </block>
+    <block wx:elif="{{record.exchangeStatus == 'EXCHANGED'}}">
+      <text class='time_line3 fs14'>兑换状态：已兑换</text>
+    </block>
+    <block wx:else>
+      <text class='time_line3 fs14'>兑换状态：已过期</text>
+    </block>
+    <block>
+      <text class='time_line2 fs14'>使用范围：{{record.allowOnline?'支持配送和到店使用':'仅支持到店使用'}}</text>
+      <text class='time_line2 fs12' style='margin-top:10rpx;padding-left:6em;color:#cccccc;'>(仅可消费使用，不可兑换现金)</text>
+    </block>
+  </view>
+
+  <!-- 底部信息 -->
+  <view class='bottom_view'>
+    <text>剩余兑换点数：{{record.user.exchangeValue}}</text>
+    <text>累计点数(上限20次）：{{record.user.luckyValue}}</text>
+  </view>
+
+
+</view>

@@ -1,0 +1,34 @@
+<view class='container'>
+
+  <view class='item_background'>
+    <view class='each_item'>
+      <view class='item_left'>交易单号</view>
+      <view class='item_right'>{{record.recordNo}}</view>
+    </view>
+    <view class='each_item'>
+      <view class='item_left'>类型</view>
+      <view class='item_right' wx:if='{{record.payType}}'>{{record.payremrk}}{{record.type}}</view>
+      <view class='item_right' wx:else>{{record.payremrk}}</view>
+    </view>
+    <view class='each_item'>
+      <view class='item_left'>金额</view>
+      <view class='item_right'>{{record.money}}</view>
+    </view>
+    <!--
+    <view class='each_item'>
+      <view class='item_left'>来源</view>
+      <view class='item_right'>{{record.payType}}</view>
+    </view>
+    -->
+    <view class='each_item'>
+      <view class='item_left'>时间</view>
+      <view class='item_right'>{{record.time}}</view>
+    </view>
+    <view class='each_item'>
+      <view class='item_left'>余额</view>
+      <view class='item_right'>{{record.moneyAfter}}</view>
+    </view>
+
+  </view>
+
+</view>

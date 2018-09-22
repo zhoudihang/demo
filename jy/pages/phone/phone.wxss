@@ -1,0 +1,101 @@
+.container {
+  height: 100vh;
+  background: #f0f0f0;
+}
+
+.top_split {
+  height: 30rpx;
+  background: #f0f0f0;
+}
+
+.login_info {
+  height: 200rpx;
+  background: white;
+}
+
+.login_line1 {
+  margin-left: 40rpx;
+  height: 100rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.login_mobile {
+  font-size: 28rpx;
+  width: 440rpx;
+}
+
+.msg_button {
+  font-size: 28rpx;
+  border: 1px solid #ff756f;
+  color: #ff756f;
+  background: white;
+  height: 60rpx;
+  line-height: 60rpx;
+  margin: 0;
+}
+
+.login_split {
+  background: #f0f0f0;
+  height: 1rpx;
+}
+
+.login_line2 {
+  margin-left: 40rpx;
+  height: 100rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.login_msg {
+  font-size: 28rpx;
+  width: 100%;
+}
+
+.tips {
+  margin: 30rpx;
+  font-size: 24rpx;
+  color: #999;
+  text-align: center;
+}
+
+.login_button {
+  color: #fff;
+  background: #ff6b67;
+  width: 90%;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 30rpx;
+  font-weight: 500;
+}
+
+.wx_login_button {
+  color: #ff6b67;
+  font-size: 28rpx;
+  margin-top: 30rpx;
+  background: #f0f0f0;
+  width: 200rpx;
+}
+
+.wx_login_button::after {
+  border: none;
+}
+
+.wechat_text {
+  text-align: center;
+  color: #999;
+  font-size: 28rpx;
+}
+
+/* .other_text {
+  text-align: center;
+  color: #ff6b67;
+  font-size: 28rpx;
+  margin-top: 50rpx;
+} */
+
+.display {
+  display: none;
+}

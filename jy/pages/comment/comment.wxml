@@ -1,0 +1,108 @@
+<!-- 分割线  -->
+<view class="comment_split"></view>
+
+<!-- 商家信息 -->
+<view class='shop_info_view'>
+  <view class='shop_logo'>
+    <image class='shop_logo_icon' src='{{order.shop.logoUrl}}'></image>
+  </view>
+  <view class='shop_name'>{{order.shop.name}}</view>
+</view>
+
+<form bindsubmit="formSubmit">
+
+  <!-- 内容 -->
+  <view class='comment_content'>
+    <textarea class='comment_content_text' placeholder='亲，菜品口味如何，对服务配送还满意吗？（至少五个字）' name="commentContent" maxlength='200'></textarea>
+  </view>
+
+  <!-- 图片 -->
+  <view class='photo_view'>
+    <block wx:for="{{imageList}}" wx:for-item="item" wx:for-index="idx" wx:key="key">
+      <view class='choose_photo_view'>
+        <image class='choose_photo' src='{{item}}' bindtap='checkImage' data-id='{{idx}}'></image>
+        <image src="/images/delete.png" class='deleteImg' bindtap='deleteImage' data-id='{{idx}}' />
+      </view>
+    </block>
+    <block wx:if="{{imageList.length < 3}}">
+      <view class='each_photo_view' bindtap='chooseImage'>
+        <image class='add_photo_icon' src='/images/add.png'></image>
+      </view>
+    </block>
+    <input value='{{pictureIdList}}' hidden='true' name='commentPictureIdList'></input>
+  </view>
+
+  <!-- 分割线  -->
+  <view class="comment_split"></view>
+
+  <!-- 店铺评分 -->
+  <view class='comment_grade'>
+    <view class='comment_grade_title'>
+      <image class='comment_grade_icon' src='/images/grade.png'></image>
+      <text class='comment_grade_text'>店铺评分</text>
+    </view>
+    <view class='comment_grade_detail'>
+      <view class='label_view'>
+        <text class='label_text'>口味</text>
+        <block wx:if="{{starOfTaste!=5}}">
+          <block wx:for="{{starOfTaste}}" wx:for-item="item" wx:for-index="idx" wx:key="key">
+            <text data-id='{{idx}}' class='star_full nfar star_choose' bindtap='starOfTaste'></text>
+          </block>
+          <block wx:for="{{5-starOfTaste}}" wx:for-item="item" wx:for-index="idx" wx:key="key">
+            <text data-id='{{idx+starOfTaste}}' class='star_o nfar star_nochoose' bindtap='starOfTaste'></text>
+          </block>
+        </block>
+        <block wx:else>
+          <block wx:for="{{5}}" wx:for-item="item" wx:for-index="idx" wx:key="key">
+            <text data-id='{{idx}}' class='star_full nfar star_choose' bindtap='starOfTaste'></text>
+          </block>
+        </block>
+      </view>
+      <view class='label_view'>
+        <text class='label_text'>包装</text>
+        <block wx:if="{{starOfPackage!=5}}">
+          <block wx:for="{{starOfPackage}}" wx:for-item="item" wx:for-index="idx" wx:key="key">
+            <text data-id='{{idx}}' class='star_full nfar star_choose' bindtap='starOfPackage'></text>
+          </block>
+          <block wx:for="{{5-starOfPackage}}" wx:for-item="item" wx:for-index="idx" wx:key="key">
+            <text data-id='{{idx+starOfPackage}}' class='star_o nfar star_nochoose' bindtap='starOfPackage'></text>
+          </block>
+        </block>
+        <block wx:else>
+          <block wx:for="{{5}}" wx:for-item="item" wx:for-index="idx" wx:key="key">
+            <text data-id='{{idx}}' class='star_full nfar star_choose' bindtap='starOfPackage'></text>
+          </block>
+        </block>
+      </view>
+    </view>
+  </view>
+
+  <!-- 分割线  -->
+  <view class="comment_split"></view>
+
+  <!-- 商品评分 -->
+  <view class='product_grade' wx:for="{{order.goodsList}}" wx:for-index="idx" wx:key="key">
+    <view class='product_name'>
+      <text>{{item.product.name}}</text>
+      <view class='order_goods_spec'>
+        <text wx:if="{{item.specV1List.length!=0}}">(</text>
+        <block wx:for="{{item.specV1List}}" wx:for-index="idx" wx:key="key" wx:for-item="spec">
+          <text>{{spec.itemList[0].label}}</text>
+          <text wx:if="{{item.specV1List.length-1!=idx}}">+</text>
+        </block>
+        <text wx:if="{{item.specV1List.length!=0}}">)</text>
+      </view>
+    </view>
+
+    <view class='good_bad_view'>
+      <image class='good_icon' src='{{goodArray[idx]}}' data-id='{{idx}}' bindtap='goodComment'></image>
+      <image class='bad_icon' src='{{badArray[idx]}}' data-id='{{idx}}' bindtap='badComment'></image>
+    </view>
+  </view>
+
+  <!-- 提交按钮 -->
+  <view class='comment_button'>
+    <button formType="submit" class='comment_button_save'>提交</button>
+  </view>
+
+</form>

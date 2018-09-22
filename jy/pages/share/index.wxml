@@ -1,0 +1,76 @@
+<!--pages/share/index.wxml-->
+<view class='shareBox relative'>
+    <view class='relative'>
+       <image src='/images/share/bg.png' class='shareRecordBg' mode="widthFix"></image>
+       <view class='absolute shareFree fs16'>
+           <image src='/images/share/btu.png' mode="widthFix" class='image100'></image>
+       </view>  
+       <!-- <button> -->
+          <view class='absolute shareFree fs16 t_center'>
+                <view wx:if="{{!disabled}}">
+                    <button class='font600'  open-type="share" plain="{{true}}" disabled="{{disabled}}">立即邀请 一起免单</button>
+                </view>
+                <view wx:else  bindtap='loginFree'>
+                  <text class='font600'>立即登录 邀请好友 一起免单</text>
+                  <image src='/images/share/icon.png' class='icon' mode="widthFix"></image>
+                </view>
+          </view>
+       <!-- </button> -->
+       <!-- <view class='absolute active fs10'>活动规则</view>       -->
+    </view>
+    <!-- 成功邀请攻略 -->
+    <view class='shareContent'>
+         <view class='title'>
+               <image src='/images/share/success.png' class="image100" mode='widthFix'></image>
+         </view>   
+         <view class='successContent relative'>
+             <view class='successul flex flexCenter clearfix'>
+                 <view class='successIcon relative'>
+                     <image src='/images/share/icon1.png' class='image100 absolute'></image>
+                 </view>
+                 <view class='successDesc'>
+                     <view class='liTitle fs16'>1.点击按钮，分享链接</view>
+                     <view class='description fs14'>点击上方按钮/右上方按钮转发，分享给好友</view>
+                 </view>
+             </view>
+             <view class='successul flex flexCenter clearfix'>
+                 <view class='successIcon relative'>
+                     <image src='/images/share/icon2.png' class='image100 absolute'></image>
+                 </view>
+                 <view class='successDesc'>
+                     <view class='liTitle fs16'>2.获得积分奖励和幸运值</view>
+                     <view class='description fs14'>好友通过链接下载并注册免啦APP 您即可获得相应的幸运值与兑换点，成功邀请一位好友幸运值与兑换点各加1点，成功邀请商家各加4点。</view>
+                 </view>
+             </view>
+             <view class='dotted absolute'></view>
+         </view>     
+    </view>
+    <!-- 邀请好友记录 -->
+    <view class='shareContent t_center' style='margin-top:70px;'>
+         <view class='title '>
+               <image src='/images/share/record.png' class='image100' mode='widthFix'></image>
+         </view>
+         <view  wx:if='{{res.inviterList&&res.inviterList.length!=0}}' >
+            <view class='friends'>
+                  <view class='friendsTitle fs14 clearfix'>
+                      <view class='l w30 font600'>好友手机号</view>
+                      <view class='l w20 font600'>兑换点数</view>
+                      <view class='l w20 font600'>幸运值</view>
+                      <view class='l w30 font600'>获得时间</view>
+                  </view>
+            </view>
+            <scroll-view scroll-y  style='height:200px' >
+                  <view class='friendsul'>
+                  <!-- USER/SHOP -->
+                    <view class='li fs13 clearfix' wx:for="{{res.inviterList}}" wx:key="key">
+                      <view class='l w30'>{{item.mobile}}</view>
+                      <view class='l w20'>+{{item.type=='SHOP'?superVipInviteCount:1}}</view>
+                      <view class='l w20'>+{{item.type=='SHOP'?superVipInviteCount:1}}</view>
+                          <view class='l w30'>{{item.regTime}}</view>
+                    </view>
+                  </view>
+            </scroll-view>
+        </view>
+        <view wx:else class='t_center noRecord'>暂无记录</view>
+    </view>
+</view>

@@ -1,0 +1,104 @@
+.no_bind_view {
+  height: 100vh;
+  background: #fafafa;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.no_bind_img {
+  height: 240rpx;
+  width: 340rpx;
+  margin-top: 300rpx;
+}
+
+.no_bind_text {
+  margin-top: 30rpx;
+  color: #999;
+  font-size: 34rpx;
+  font-weight: 500;
+}
+
+.line_view {
+  height: 80rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.line_left {
+  width: 15%;
+  margin-left: 50rpx;
+  font-size: 30rpx;
+  font-weight: 500;
+  color: #333;
+}
+
+.line_right {
+  width: 75%;
+  font-size: 30rpx;
+  font-weight: 500;
+  color: #333;
+}
+
+.line-split {
+  height: 5rpx;
+  background: #f8f8f8;
+}
+
+.bind_view {
+  height: 100vh;
+  background: #f0f0f0;
+}
+
+.water_view {
+  background: white;
+}
+
+.gas_view {
+  margin-top: 50rpx;
+  background: white;
+}
+
+.unbind_icon {
+  width: 30rpx;
+  height: 30rpx;
+  margin-left: 630rpx;
+  margin-right: 10rpx;
+}
+
+.unbind_text {
+  font-size: 24rpx;
+  font-weight: 500;
+  color: #333;
+}
+
+.go_bind_view {
+  height: 320rpx;
+  margin-top: 50rpx;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.add_icon_view {
+  border: 2px dashed lightgray;
+  width: 150rpx;
+  height: 150rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.add_icon {
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.add_text {
+  margin-top: 20rpx;
+  font-size: 30rpx;
+  color: #999;
+}

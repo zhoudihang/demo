@@ -1,0 +1,33 @@
+<!-- logo&版本号 -->
+<view class='about_view'>
+  <image class="logo_img" src="../../images/logo.png"></image>
+  <text class="version fs10" wx:if="{{version}}">{{version}}</text>
+</view>
+
+<!-- 分割线  -->
+<view class="function-split"></view>
+
+<view class='function_view' bindtap='function_introduce' hover-class='navigator-hover'>
+  <view class='about_text fs14'>功能介绍</view>
+  <image class='next_logo' src="../../images/next.png"></image>
+</view>
+
+<!-- 分割线  -->
+<view class="function-split"></view>
+
+<navigator class='function_view' url='../suggest/suggest'>
+  <view class='about_text fs14'>意见反馈</view>
+  <image class='next_logo' src="../../images/next.png"></image>
+</navigator>
+
+<!-- 底部 -->
+<view class='about_bottom'>
+  <view class='about_bottom_view fs10'>
+    <text class='protocol' bindtap='service_protocol'>《免啦服务协议》</text>
+    <text>和</text>
+    <text class='protocol' bindtap='privacy_protocol'>《免啦隐私保护指引》</text>
+  </view>
+  <view class='about_bottom_view fs10'>
+    <text>程式科技版权所有</text>
+  </view>
+</view>

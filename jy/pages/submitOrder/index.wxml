@@ -1,0 +1,193 @@
+<!-- 订单状态 -->
+<view class='order_module1'>
+  <view class='module_top'></view>
+  <!-- 分割线 -->
+  <view class='module1_module2_split'></view>
+  <view class='module_bottom'>
+    <view class='bottom_line1' bindtap='navigateTo' data-uri="/pages/address/address?shopId={{goodsOrderInfo.id}}&source={{thisRoute}}">
+      <view class='line1_left resAddress t_center'>
+        <view wx:if="{{!resAddress.id}}">
+          <view class='address fs16 miancolor'>＋ 选择收货地址</view>
+        </view>
+        <view class='addressMsg' wx:else>
+          <view class='title fs16 miancolor' wx:if="{{resAddress.address}}">
+            {{resAddress.address+' '+resAddress.address2}}
+          </view>
+          <view class='namePhone fs14'>{{resAddress.name}}({{resAddress.gender== "MALE"?'先生':'女士' }}) {{resAddress.tel}}</view>
+        </view>
+      </view>
+      <view class='line1_right' hidden='{{resAddress.length==0}}'>
+        <image class='next_icon' src='/images/next.png'></image>
+      </view>
+    </view>
+    <view class='bottom_line2'>
+      <view class='line2_left'></view>
+      <view class='line2_center'></view>
+      <view class='line2_right'></view>
+    </view>
+    <view class='bottom_line3' data-shopid='{{order.shop.id}}' bindtap='gotoShop' wx:if='{{orderType=="GENERAL"}}'>
+      <text class='fs14 font600'>立即配送</text>
+      <text class='fs14 font100 blue'>(商家配送)</text>
+    </view>
+    <view class='bottom_line3 relative' wx:if='{{orderType=="BOOK"}}' bindtap='handleBookTime'>
+      <text class='fs14 font600'>指定时间</text>
+      <text class='fs14 font100 blue' wx:if='{{bookTime!=""}}'>{{bookMonth}} {{bookTime}}</text>
+      <text class='fs14 font100 blue' wx:else> 请选择预订时间</text>      
+      <image class='next_icon absolute' style='top:19rpx;right:10rpx;' src='/images/next.png'></image>
+    </view>
+  </view>
+</view>
+
+<!-- 订单详情 -->
+<view class='order_module2' wx:if="{{goodsOrderInfo.id}}">
+  <view class='shop_info_view'>
+    <view class='shop_icon_view fs16'>
+      <image class='shop_icon' src='{{goodsOrderInfo.logoUrl!==""?goodsOrderInfo.logoUrl:"/images/default_logo.png"}}'></image>
+    </view>
+    <view class='shop_name_view' style='width:90%;'>
+      <text class='shop_name fs16 line_overhide disblock'>{{goodsOrderInfo.name}}</text>
+    </view>
+  </view>
+  <block wx:for="{{goodsOrderInfo.goodsList}}" wx:key="key" wx:for-indx="index" wx:for-itme="item" wx:if="{{item.isShow}}">
+    <view class='order_item_view'>
+      <view class='order_goods_img_view'>
+        <image class='order_goods_img' src='{{item.pictureUrl}}@scale200'></image>
+      </view>
+      <view class='order_goods_info_view'>
+        <view class='order_goods_name fs15'>
+          <text class='line_overhide disblock'>{{item.name}}</text>
+        </view>
+        <view class='order_goods_number fs14'>
+          <text wx:if="{{item.spaciMsg}}">{{item.spaciMsg}}   </text>
+          <text>x{{item.addnum}}</text>
+        </view>
+      </view>
+      <view class='order_goods_price_view fs15'>
+        <text>¥{{item.price + (item.spaciPrice?item.spaciPrice:0)}}</text>
+      </view>
+    </view>
+    <view class='order_goods_split'></view>
+  </block>
+  <block wx:if="{{goodsOrderInfo.goodsList.length > ghideNum+1}}">
+    <view class='spread_all_view {{display===true?"":"display"}}'>
+      <view class='spread_view' bindtap='showAllOrder'>
+        <text>展开全部</text>
+      </view>
+      <view class='spread_icon_view' bindtap='showAllOrder'>
+        <image class='spread_icon' src='/images/next.png'></image>
+      </view>
+    </view>
+    <view class='spread_all_view  {{display===true?"display":""}}'>
+      <view class='spread_view' bindtap='hideOrder'>
+        <text>点击收起</text>
+      </view>
+      <view class='spread_icon_view2' bindtap='hideOrder'>
+        <image class='spread_icon' src='/images/next.png'></image>
+      </view>
+    </view>
+  </block>
+
+  <view class='other_fee_view' wx:if="{{goodsOrderInfo.packageFee&&goodsOrderInfo.packageFee!=0}}">
+    <view class='other_fee_view_left'>
+      <text class='fs14'>包装费</text>
+    </view>
+    <view class='other_fee_view_right'>
+      <text class='fs14'>¥{{goodsOrderInfo.packageFee}}</text>
+    </view>
+  </view>
+  <view class='other_split'></view>
+  <view class='other_fee_view' wx:if="{{goodsOrderInfo.shippingFee&&goodsOrderInfo.shippingFee!=0}}">
+    <view class='other_fee_view_left'>
+      <text class='fs14'>配送费</text>
+    </view>
+    <view class='other_fee_view_right'>
+      <text class='fs14'>¥{{goodsOrderInfo.shippingFee}}</text>
+    </view>
+  </view>
+  <view class='other_fee_view'>
+    <view class='other_fee_view_left'>
+      <text class='fs14'>免单券</text>
+      <image src='/images/mark.png' class='freeicon'  bindtap='toFreemsg'></image>
+    </view>
+    <view class='other_fee_view_right' bindtap='toFree'>
+      <view wx:if='{{toUseNum!=0&&couponId==0}}' class='disinlineblock toUseNum fs12'><image src='/images/ydtime.png'></image>{{toUseNum}}个可用</view>
+      <text wx:else class='nofree fs12'>{{myrecord.length&&hasWinCord?'免单券x1':'无可用免单券'}}</text>
+      <image src='/images/next.png' class='freeicon'></image>
+    </view>
+  </view>
+  <view class='other_split'></view>
+  <view class='total_fee_view'>
+    <text class='total_fee_left fs14'>小计 : </text>
+    <text class='total_fee_right fs14'>¥{{goodsOrderInfo.amountShippingFee}}</text>
+  </view>
+</view>
+
+<!-- 分割线 -->
+<view class='module_split'></view>
+<!-- 备注 -->
+<view class='order_module2 note' style='padding:0 50rpx;'>
+  <view class='title fs14'>备注信息</view>
+  <textarea class='fs12' placeholder='填写备注信息' value='{{goodsOrderInfo.remarks}}' cursor-spacing="60" bindinput='textbindinput' hidden='{{!isShowTextarea}}'></textarea>
+  <view  hidden='{{isShowTextarea}}' class='fs12' style='padding-bottom:10rpx;color:rgb(153,153,153)'>{{goodsOrderInfo.remarks!=''?goodsOrderInfo.remarks:'填写备注信息'}}</view>
+</view>
+
+<view class='module_split' style='height:70px;'></view>
+
+<!-- 结算 -->
+<view class='fixedButtom fixed'>
+  <view class='goBuy relative'>
+    <view class='logo absolute'>
+      <view class='relative'>
+        <image src='../../images/logo.png'></image>
+      </view>
+    </view>
+    <!-- 结算 -->
+    <view class='settle fs14'>
+      <text class='disblock'>合计 ¥{{amount}}</text>
+    </view>
+    <!-- 去结算 -->
+    <view class='tosettle fs14 absolute t_center'>
+      <view class='tosettleBtn' bindtap="submitOrder" bindtap='toSettle'>去结算</view>
+    </view>
+  </view>
+</view>
+
+<!-- 预订  wx:if='{{showBook}}' -->
+<view class='book flex fixed' wx:if='{{showBook}}' bindtap='isHideBook'>
+    <view class='content flex' catchtap='nothingtotap'>
+        <view class='date'>
+           <view class='li t_center {{item.active?"active":""}}'
+                 wx:for='{{bookTimeArray}}'
+                 wx:key='key'
+                 wx:for-item='item'
+                 wx:for-index='index'
+                 data-index='{{index}}'
+                 bindtap='changeydday'
+                 hidden='{{index!=0}}'
+           >
+              <text class='fs14'>{{item.bookMonth}}</text>
+           </view>
+        </view>
+        <view class='time'>
+           <scroll-view scroll-y>
+             <view
+                wx:for='{{bookTimeArray}}'
+                wx:key='key'
+                wx:for-index='index'
+             >
+               <view class='li fs14 {{bookTimeIndex==index?"active":""}}' 
+                     bindtap='chooseBookTime'
+                     wx:for='{{item.dayTime}}'
+                     wx:key='gkey'
+                     data-gitem='{{gitem}}'
+                     data-gindex='{{gindex}}'
+                     data-index='{{index}}'
+                     wx:for-item='gitem'
+                     wx:for-index='gindex'
+                     hidden='{{!item.active}}'
+                     >{{gitem.trueTime}}<image src='/images/selectTime.png' wx:if='{{gitem.active}}'></image></view>
+             </view>
+           </scroll-view>
+        </view>
+    </view>
+</view>

@@ -1,0 +1,6 @@
+<view class="error flex fixed">
+  <view class='errImg'>
+    <image src='../../images/no_order.png'></image>
+    <view class='msg t_center'>{{msg}}</view>
+  </view>
+</view>

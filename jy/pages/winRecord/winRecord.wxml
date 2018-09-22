@@ -1,0 +1,60 @@
+<block wx:for="{{recordList}}" wx:key="key">
+  <!-- 时间条 -->
+  <view class='time_view'>
+    <view class='time'>{{item.dateLine}}</view>
+  </view>
+
+  <!-- 中奖记录 -->
+  <view class='record_item' wx:for="{{item.joinRecordList}}" wx:for-item="record" wx:for-index="idx" wx:key="key">
+    <!-- 左边头像信息 -->
+    <view class='record_item_left'>
+      <image class='left_logo' src='{{record.freemealProduct.pictureUrl}}'></image>
+    </view>
+    <view class='record_item_right'>
+      <view class='right_top' bindtap='gotoDetail' data-id='{{record.freemealId}}'>
+        <view class='top_shop_left'>
+          <text class='top_shop_name'>{{record.shop.name}}</text>
+        </view>
+        <view class='top_shop_right'>
+          <block wx:if="{{record.exchangeStatus == 'INVALID'}}">
+            <text class='top_record_status'>已过期</text>
+          </block>
+          <block wx:else>
+            <block wx:if="{{record.activeStatus == 'NOTYET'}}">
+              <text class='top_record_status'>未激活</text>
+            </block>
+            <block wx:else>
+              <block wx:if="{{record.exchangeStatus == 'NOTYET'}}">
+                <text class='top_record_status'>未兑换</text>
+              </block>
+              <block wx:else>
+                <text class='top_record_status'>已兑换</text>
+              </block>
+            </block>
+          </block>
+
+        </view>
+      </view>
+      <view class="info-split" bindtap='gotoDetail' data-id='{{record.freemealId}}'></view>
+      <view class='right_middle' bindtap='gotoDetail' data-id='{{record.freemealId}}'>
+        <view class='middle_line1'>
+          <text class='line1_name'> 获取时间 : {{record.freemeal.startTime}}</text>
+        </view>
+        <view class='middle_line2'>
+          <text class='line2_text'>兑换商品：{{record.freemealProduct.name}} ￥{{record.freemealProduct.price}}</text>
+        </view>
+      </view>
+      <view class='right_bottom'>
+        <block wx:if="{{record.activeStatus == 'NOTYET'&&record.exchangeStatus != 'INVALID'}}">
+          <view class='bottom_button' bindtap='active' data-id='{{record.freemealId}}'>去激活</view>
+        </block>
+        <block wx:if="{{record.activeStatus == 'ACTIVE'&&record.exchangeStatus == 'NOTYET'}}">
+          <view class='bottom_button' bindtap='exchange' data-id='{{record.freemealId}}'>去兑换</view>
+        </block>
+      </view>
+      <block wx:if="{{item.joinRecordList.length-1 != idx}}">
+        <view class="record-split"></view>
+      </block>
+    </view>
+  </view>
+</block>

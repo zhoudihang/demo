@@ -1,0 +1,25 @@
+<view class='view'>
+  <view class='search'>
+    <view class='position_city'>
+      <view class="periphery fas fa-map-marker-alt"></view>
+      <text>{{position_city}}</text>
+      <view class='shape fa chevron-down' style='color:gray;padding-left:1%;'></view>
+    </view>
+    <view class='search_view'>
+      <view class="fab fa-sistrix" style='color:gray;'></view>
+      <input type='text' placeholder='请输入收货地址' bindinput='searchMap' />
+    </view>
+  </view>
+  <view class='map_container {{hide===1?"hide":""}}'>
+    <!--定义页面结构，可以使用地图组件也能使用其他组件 -->
+    <map class="map" id="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="20" show-location="true" markers="{{markers}}" circles='circles' bindregionchange='bindregionchange' controls='{{controls}}' bindcontroltap='bindcontroltap' />
+  </view>
+  <scroll-view class='show {{hide===1?"show_height2":"show_height1"}} {{hideAll===1?"hide":""}}' scroll-y='true'>
+    <block wx:for="{{list}}" wx:key="key">
+      <view class='show_list' data-id='{{item.id}}' bindtap='getLocationMsg'>
+        <text class='show_top {{index===0?"font_color":""}}'>{{item.name}}</text>
+        <text class='show_bottom'>{{item.address}}</text>
+      </view>
+    </block>
+  </scroll-view>
+</view>

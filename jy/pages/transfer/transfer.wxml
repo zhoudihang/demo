@@ -1,0 +1,28 @@
+<view class='container'>
+  <view class='top_split'></view>
+  <view class='balance_info_view'>
+    <view class='account_info'>
+      <text class='info_tittle'>到账账号</text>
+      <block wx:if="{{userInfo.wxUser.nickName}}">
+        <text class='info_account'>微信账号（{{userInfo.wxUser.nickName}}）</text>
+      </block>
+      <block wx:else>
+        <button class='info_unbind' open-type="getUserInfo" bindgetuserinfo='getUserInfo'>绑定本微信号</button>
+      </block>
+    </view>
+    <view class='split_top'></view>
+    <view class='transfer_tittle'>
+      <text>提现金额</text>
+    </view>
+    <view class='transfer_money'>
+      <text class='unit_symbol'>¥</text>
+      <input class='money_input' type='digit' placeholder='请输入金额，至少10元起' value='{{transferMoney}}' bindinput='input_money'></input>
+    </view>
+    <view class='split_bottom'></view>
+    <view class='all_balance'>
+      <text class='all_money'>余额¥{{userInfo.balance}}</text>
+      <text class='all_transfer' bindtap='getAll'>全部提现</text>
+    </view>
+  </view>
+  <button class='transfer_button' bindtap='transfer'>提现</button>
+</view>

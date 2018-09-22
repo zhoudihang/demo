@@ -1,0 +1,164 @@
+<!--index.wxml-->
+<!-- 定位  搜索  -->
+<wxs src="../../wxs/filters.wxs" module="filters" />
+
+<view class='header relative'>
+  <view class='location'>
+    <view class='relative'>
+      <text class='nfar faspin fa-spinner disinlineblock ' wx:if="{{isPosition}}"></text>
+      <text class='position fs13' bindtap='rePosition'>{{position}}</text>
+      <!-- <image src='../../images/select_down.png'></image> -->
+    </view>
+  </view>
+  <view class='search'>
+    <view class='inputContent flex ' bindtap='navigateTo' data-uri='../history/index'>
+      <image src='../../images/search.png'></image>
+      <text class='fs12'>说，你想找什么？</text>
+    </view>
+  </view>
+</view>
+<view class='headerHeight'></view>
+<!-- 轮播图 -->
+<view wx:if="{{res.advertGroup}}">
+  <view wx:if="{{res.advertGroup.COUNTRY}}">
+    <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-active-color="#ffffff" circular="{{circular}}">
+      <block wx:for="{{res.advertGroup.COUNTRY}}" wx:key="key" wx:for-index="idx" wx:for-item="item">
+        <swiper-item class="advertGroup t_center" bindtap="SelectedItem" data-item="{{filters.JSONstringify(item)}}">
+          <image  src="{{item.pictureUrl}}" class="slide-image"/>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+  <view wx:else class='defaultbannerImg'>
+    <image src="../../images/advertising_default.jpg" />
+  </view>
+</view>
+
+<!-- 菜单栏  -->
+<view class='menu clearfix'>
+  <view class='l w25 t_center li ' bindtap='menuClick' data-type='WATER'>
+    <view class='menu_logo'>
+      <image src='../../images/unuse/menu01.png'></image>
+    </view>
+    <view>
+      <text>一键送水</text>
+    </view>
+  </view>
+  <view class='l w25 t_center li ' bindtap='menuClick' data-type='COALGAS'>
+    <view class='menu_logo'>
+      <image src='../../images/unuse/menu02.png'></image>
+    </view>
+    <view>
+      <text>煤气速送</text>
+    </view>
+  </view>
+  <view class='l w25 t_center li ' bindtap='menuClick' data-type='FOOD'>
+    <view class='menu_logo'>
+      <image src='../../images/unuse/menu03.png'></image>
+    </view>
+    <view>
+      <text>精品外卖</text>
+    </view>
+  </view>
+  <view class='l w25 t_center li ' bindtap='menuClick' data-type='RECYCLE'>
+    <view class='menu_logo'>
+      <image src='../../images/unuse/menu04.png'></image>
+    </view>
+    <view>
+      <text>废品回收</text>
+    </view>
+  </view>
+</view>
+<!-- 精品推荐  -->
+<view class='recommend' wx:if="{{res.shopList}}">
+  <!-- 精品推荐 title  -->
+  <view class='recommend_title t_center'>
+    <view class='relative title'>
+      <view class='title_l absolute'></view>
+      <view class='radio_l absolute'></view>
+      <text class='fs14 fw600'>精品推荐</text>
+      <view class='radio_r absolute'></view>
+      <view class='title_r absolute'></view>
+    </view>
+  </view>
+  <!-- 精品推荐 list  -->
+  <view class='recommend_content' wx:if="{{res.shopList}}">
+    <block wx:for="{{res.shopList}}" wx:key="key" wx:for-index="idx" wx:for-item="item">
+      <view class='li clearfix' bindtap='navigateTo' data-uri="../store/index?id={{item.id}}">
+        <view class='l goods_logo'>
+          <view class='relative'>
+            <block wx:if="{{item.logoUrl==''||item.logoUrl}}">
+              <image src='{{filters.imageScale200(item.logoUrl)}}' class='goods_img'></image>
+            </block>
+            <block wx:else>
+              <image src='/images/default_logo.png' class='goods_img'></image>
+            </block>
+            <image src='../../images/mianfei.png' class='mianfei absolute' wx:if="{{item.free}}"></image>
+          </view>
+        </view>
+        <view class='goods_content'>
+          <view class='title relative'>
+            <text class='goods_name fs16 fw600 disblock line_overhide'>{{item.name}}</text>
+            <text class='distance fs10 absolute' decode='true'>{{item.distince}}km</text>
+          </view>
+          <view class='star_num clearfix'>
+            <view class='star l clearfix'>
+              <view class='l nfar' wx:for="{{star}}" wx:key="starkey" wx:for-index="staridx" wx:for-item="staritem">
+                <view class='star_full' wx:if="{{staritem > item.last30DaysAvg && item.last30DaysAvg !=0}}"></view>
+                <view class='star_o' wx:else></view>
+              </view>
+            </view>
+            <text class='starnum fs10 l disblock'>{{item.last30DaysAvg}}</text>
+            <text class='ordernum fs10 l disblock'>订单量{{item.orderCount}}</text>
+          </view>
+          <view class='song fs12'>起送 ¥{{item.minPrice}}｜配送 ¥{{item.shippingFee}}</view>
+          <view class='clearfix usemoney label'>
+            <text class='free fs10 disinlneblock freewaimai' wx:if='{{item.type==="FOOD"&&item.free}}'>免费</text>
+            <text class='free fs10 disinlneblock waimai' wx:if='{{item.type==="FOOD"}}'>外卖</text>
+            <text class='free fs10 disinlneblock freetime' wx:if='{{item.type==="FOOD"&&item.free}}'>免费餐开始时间：{{item.freemeal.startTime}}</text>
+          </view>
+        </view>
+      </view>
+    </block>
+    <import src="/template/loading.wxml"/>
+    <template is="item" data="{{list:res.shopList,isloaded:isloaded}}"/>
+  </view>
+</view>
+
+
+<!-- 一键下单的订单预览 -->
+<view class='oneKeyOrderInfo fixed' wx:if="{{oneKeyOrderInfo.isShow}}">
+  <view class='bg fixed'></view>
+  <view class='content fixed'>
+    <view class='relative'>
+      <view class='title fs18 t_center'>请确定订单</view>
+      <view class='ul fs14'>
+        <view class='li clearfix'>
+          <view class='left'>收货人</view>
+          <view class='right'>{{oneKeyOrderInfo.name}} {{oneKeyOrderInfo.sex}}</view>
+        </view>
+        <view class='li clearfix'>
+          <view class='left'>联系电话</view>
+          <view class='right'>{{oneKeyOrderInfo.tel}}</view>
+        </view>
+        <view class='li clearfix'>
+          <view class='left'>下单商品</view>
+          <view class='right'>{{oneKeyOrderInfo.goodsname}}</view>
+        </view>
+        <view class='li clearfix'>
+          <view class='left'>支付方式</view>
+          <view class='right'>{{oneKeyOrderInfo.payType}} {{oneKeyOrderInfo.payPrice}}</view>
+        </view>
+        <view class='li clearfix'>
+          <view class='left'>收货地址</view>
+          <view class='right'>{{oneKeyOrderInfo.address}} {{oneKeyOrderInfo.address2}}</view>
+        </view>
+      </view>
+      <view class='remarks fs12'>
+        <input placeholder='可添加备注信息' placeholder-style='color:rgba(221, 221, 221, 1)' cursor-spacing='70' value='{{oneKeyOrderInfo.remark}}' bindinput='oneKeyOrderInfoRemark'></input>
+      </view>
+      <view class='botton t_center' bindtap='submitOneKeyOrderInfo'>确定</view>
+      <view class='absolute t_center nfar fa-close fs16' bindtap='closeOneKeyOrderInfo'></view>
+    </view>
+  </view>
+</view>

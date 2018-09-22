@@ -1,0 +1,90 @@
+.container {
+  background: #f8f8f8;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.top_line {
+  height: 30rpx;
+}
+
+.each_item {
+  height: 150rpx;
+  background: white;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.item_left {
+  width: 35%;
+  margin-left: 40rpx;
+  font-size: 34rpx;
+}
+
+.item_middle {
+  width: 58%;
+  text-align: right;
+  margin-right: 40rpx;
+  font-size: 30rpx;
+  color: #999;
+}
+
+.nickname_input {
+  text-align: right;
+  font-size: 28rpx;
+  color: #999;
+  margin-left: 65rpx;
+}
+
+.logo {
+  height: 100rpx;
+  width: 100rpx;
+  border-radius: 50%;
+  margin-bottom: 25rpx;
+}
+
+.item_right {
+  width: 7%;
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  height: 20rpx;
+  width: 15rpx;
+}
+
+.split_line {
+  height: 5rpx;
+}
+
+.button_view {
+  padding-top: 50rpx;
+  height: 800rpx;
+  background: #f8f8f8;
+}
+
+.button_save {
+  color: #fff;
+  background: #ff6b67;
+  width: 90%;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 30rpx;
+  font-weight: 500;
+}
+
+.button_logout {
+  color: #ff6b67;
+  background: #fff;
+  width: 90%;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 30rpx;
+  font-weight: 500;
+  margin-top: 30rpx;
+  border: 2rpx solid #ff6b67;
+}

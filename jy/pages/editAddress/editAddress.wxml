@@ -1,0 +1,79 @@
+<form bindsubmit="formSubmit">
+
+  <!-- 地址ID -->
+  <view>
+    <input type='text' name='id' value='{{id}}' class='hide' />
+  </view>
+
+  <!-- 联系人 -->
+  <view class='line_view'>
+    <view class='line_left'>联系人:</view>
+    <input type='text' class='line_right' placeholder='请填写收货人的姓名' value='{{name}}' name='name' />
+  </view>
+
+  <!-- 分割线 -->
+  <view class="address-split"></view>
+
+  <!-- 性别 -->
+  <view class='line_view'>
+    <view class='line_left'></view>
+    <radio-group name="gender" class="gender_radio">
+      <block wx:if='{{gender==="MALE"}}'>
+        <label class='male_label'>
+          <radio value="MALE" color='#ff6b67' checked='checked' />先生
+        </label>
+        <label>
+          <radio value="FEMALE" color='#ff6b67' />女士
+        </label>
+      </block>
+      <block wx:else>
+        <label class='male_label'>
+          <radio value="MALE" color='#ff6b67' />先生
+        </label>
+        <label>
+          <radio value="FEMALE" color='#ff6b67' checked='checked' />女士
+        </label>
+      </block>
+    </radio-group>
+  </view>
+
+  <!-- 分割线 -->
+  <view class="address-split"></view>
+
+  <!-- 手机号 -->
+  <view class='line_view'>
+    <view class='line_left'>手机号:</view>
+    <input type='number' class='line_right' placeholder='请填写收货人手机号码' value='{{tel}}' name='tel' />
+  </view>
+
+  <!-- 分割线 -->
+  <view class="address-split"></view>
+
+  <!-- 收货地址 -->
+  <navigator class='line_view' url='../map/map?location={{location}}'>
+    <view class='line_left'>收货地址:</view>
+    <image class='position_icon' src='/images/position.png'></image>
+    <input type='text' class='line_right' placeholder='点击选择' value='{{addressName}}' />
+    <input type='text' value='{{addressName}}' name='address' class='hide' />
+    <input type='text' value='{{location}}' name='location' class='hide' />
+  </navigator>
+
+  <!-- 分割线 -->
+  <view class="address-split"></view>
+
+  <!-- 门牌号 -->
+  <view class='line_view'>
+    <view class='line_left'>门牌号:</view>
+    <input type='text' class='line_right' placeholder='详细地址，例：8座1102室' value='{{address2}}' name='address2' />
+  </view>
+
+  <!-- 分割线 -->
+  <view class="address-split"></view>
+
+  <!-- 保存按钮 -->
+  <view class='address_button'>
+    <button formType="submit" class='address_button_save'>保存地址</button>
+    <button bindtap='deleteAddress' class='address_button_delete {{id===undefined?"hide":""}}' data-id='{{id}}'>删除地址</button>
+  </view>
+
+</form>

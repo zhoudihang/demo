@@ -1,0 +1,938 @@
+.header {
+  padding-bottom: 2rpx;
+  height: 260rpx;
+}
+
+.header .store {
+  min-height: 150rpx;
+  margin-bottom: 26rpx;
+}
+eader .store .bg {
+  width: 100%;
+  opacity: 0.7;
+}
+
+.header .store .bg image {
+  width: 100%;
+}
+
+.header .store .logo {
+  width: 160rpx;
+  height: 160rpx;
+  left: 32rpx;
+  bottom: -22rpx;
+}
+
+.header .store .logo image {
+  width: 100%;
+  height: 100%;
+}
+
+.header .mianmsg {
+  /* padding:50rpx 32rpx 32rpx 32rpx; */
+  font-size: 20rpx;
+  line-height: 32rpx;
+  color: rgba(51, 51, 51, 1);
+}
+
+.header .mianmsg image {
+  width: 32rpx;
+  height: 32rpx;
+}
+
+.header .store .content {
+  padding-left: 220rpx;
+  padding-top: 60rpx;
+  color: #fff;
+  overflow: hidden;
+}
+
+.header .store .bg, .shopMsg .store .bg {
+  opacity: 0.5;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: -1;
+}
+
+.header .store .bgshow, .shopMsg .store .bgshow {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: -1;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.header .store .content .title {
+  font-size: 36rpx;
+  color: rgba(255, 255, 255, 1);
+  line-height: 50rpx;
+  padding-right: 170rpx;
+}
+
+.header .store .content .time {
+  font-size: 24rpx;
+  color: rgba(255, 255, 255, 1);
+  line-height: 34rpx;
+  margin-top: 10rpx;
+}
+
+.header .store .content .notice {
+  padding-bottom: 10rpx;
+  margin-top: 4rpx;
+}
+
+.header .store .content  .fa-phone {
+  top: -30rpx;
+  right: 0;
+  width:100rpx;
+  height: 100rpx;
+  justify-content:center;
+  align-items: center;
+}
+
+.menu {
+  flex: 1; /* NEW ,Spec - Opera 12.1,Firefox 20+*/
+  -webkit-box-flex: 1; /*OLD -iOS 6-,Safari 3.1-6*/
+  height: 92rpx;
+  background: rgba(255, 255, 255, 1);
+  border-bottom: 2rpx solid rgba(51, 51, 51, 0.1);
+}
+
+.menu .tap {
+  flex: 1; /* NEW ,Spec - Opera 12.1,Firefox 20+*/
+  -webkit-box-flex: 1; /*OLD -iOS 6-,Safari 3.1-6*/
+  height: 80rpx;
+  font-size: 32rpx;
+  color: rgba(51, 51, 51, 1);
+}
+
+.menu .tap text {
+  line-height: 77rpx;
+}
+
+.menu .tap.active text {
+  color: #ff6b67;
+  border-bottom: 4rpx solid #ff6b67;
+}
+
+.meneSwiper {
+  background: rgba(255, 255, 255, 1);
+  /* background: pink; */
+}
+
+.order_dishes {
+  display: -webkit-box; /* OLD - iOS 6-, Safari 3.1-6 */
+  display: -moz-box; /* OLD - Firefox 19- (buggy but mostly works) */
+  display: -ms-flexbox; /* TWEENER - IE 10 */
+  display: -webkit-flex; /* NEW - Chrome */
+  display: flex; /* NEW, Spec - Opera 12.1, Firefox 20+ */
+  flex: 1; /* NEW ,Spec - Opera 12.1,Firefox 20+*/
+  -webkit-box-flex: 1; /*OLD -iOS 6-,Safari 3.1-6*/
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+}
+
+.order_dishes .submenu {
+  width: 180rpx;
+  height: 100%;
+  background: rgba(51, 51, 51, 0.05);
+  padding-top: 10rpx;
+}
+
+.order_dishes .submenu .li {
+  font-size: 28rpx;
+  color: rgba(51, 51, 51, 1);
+  width: 150rpx;
+  min-height: 100rpx;
+  padding: 2rpx 15rpx;
+}
+.order_dishes .submenu .active text {
+  font-weight: bold;
+  color:#000000;
+  /* color:#ff6b67; */
+}
+
+.order_dishes .goods_list {
+  width: calc(100% - 108rpx);
+  height: 100%;
+}
+
+.order_dishes scroll-view {
+  height: 100%;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+
+.goods_list .gtitle {
+  background: rgba(255, 255, 255, 0.5);
+  padding-left:32rpx;
+}
+
+.goods_list .gtitle text {
+  color: rgba(153, 153, 153, 1);
+  line-height: 66rpx;
+}
+
+.goods_list .list_content {
+  padding: 0 32rpx;
+}
+
+.goods_list .goodslogo, .scontent .goodslogo {
+  width: 160rpx;
+  height: 160rpx;
+}
+
+.goods_list .goodslogo image, .goBuy .logo image, .scontent .goodslogo image {
+  width: 100%;
+  height: 100%;
+}
+
+.glist_content {
+  padding-left: 16rpx;
+  margin-bottom: 16rpx;
+}
+
+.glist_content .title {
+  font-size: 32rpx;
+  color: rgba(51, 51, 51, 1);
+  line-height: 44rpx;
+}
+
+.glist_content .description {
+  height: 68rpx;
+  font-size: 24rpx;
+  color: rgba(153, 153, 153, 1);
+  line-height: 34rpx;
+  margin-top: 6rpx;
+}
+
+.glist_content .money {
+  font-size: 32rpx;
+  color: rgba(255, 107, 103, 1);
+  line-height: 44rpx;
+  font-weight: 600;
+}
+
+.glist_content .money text {
+  color: rgba(153, 153, 153, 1);
+  line-height: 28rpx;
+  margin-left: 6rpx;
+  font-weight: 100;
+}
+
+.desc .icon {
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 50%;
+  font-size: 36rpx;
+  /* border: 2rpx solid #ff6b67; */
+  justify-content: center;
+  align-items: center;
+}
+.desc .icon image{
+   width: 40rpx;
+  height: 40rpx;
+}
+/* .fa-plus:before,.fa-minus:before{
+  color: #ff6b67;
+  padding:10rpx;
+  border:1px solid #ff6b67;
+  border-radius: 50%;
+} */
+
+.desc {
+  width: 140rpx;
+  text-align: right;
+}
+
+.desc view {
+  vertical-align: top;
+  justify-content: flex-end;
+}
+
+.desc .add {
+  color: #fff;
+}
+
+.desc .less {
+  background: #fff;
+}
+
+.desc .num {
+  width: 50rpx;
+  font-size: 24rpx;
+  color: rgba(153, 153, 153, 1);
+  line-height: 40rpx;
+}
+
+.desc .changeDesc {
+  width: 140rpx;
+  height: 52rpx;
+  line-height: 52rpx;
+  color: #fff;
+  font-size: 24rpx;
+  border-radius: 52rpx;
+}
+
+.fixedButtom {
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.isShowFeeStart {
+  left: 0;
+  bottom: 50px;
+  width: 100%;
+  height: 60rpx;
+  background: rgba(255, 227, 129, 1);
+  color: #d53a00;
+}
+
+.isShowFeeStart text {
+  line-height: 60rpx;
+  font-size: 24rpx;
+}
+
+.isShowFeeStart .fa-times-circle-o {
+  width: 60rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  top: 0;
+  right: 0;
+}
+
+.goBuy {
+  height: 50px;
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.goBuy .logo {
+  width: 100rpx;
+  height: 100rpx;
+  left: 32rpx;
+  top: -18rpx;
+}
+
+.goBuy .logo .relative {
+  width: 100%;
+  height: 100%;
+}
+
+.goBuy .logo .num, .submenu .num {
+  top: -16rpx;
+  right: -16rpx;
+  height: 24rpx;
+  min-width: 24rpx;
+  line-height: 24rpx;
+  border: 1px solid rgba(255, 255, 255, 1);
+  background: rgba(255, 158, 0, 1);
+  color: #fff;
+  font-size: 24rpx;
+  padding: 4rpx;
+  border-radius: 32rpx;
+}
+
+.submenu .num {
+  top: 15rpx;
+  right: 15rpx;
+  background: RGBA(255, 107, 103, 1);
+  z-index: 100;
+}
+
+.settle {
+  padding: 1rpx 200rpx 1rpx 160rpx;
+}
+
+.settle .money {
+  font-size: 36rpx;
+  margin-top: 10rpx;
+  color: rgba(255, 255, 255, 1);
+  line-height: 50rpx;
+}
+
+.settle .money text {
+  text-decoration: line-through;
+  font-size: 24rpx;
+  font-weight: 100;
+  color: rgba(153, 153, 153, 1);
+  line-height: 34rpx;
+}
+
+.settle .smoney {
+  font-size: 20rpx;
+  color: rgba(153, 153, 153, 1);
+  line-height: 28rpx;
+}
+
+.tosettle {
+  top: 0;
+  right: 0;
+  width: 200rpx;
+  line-height: 50px;
+  font-size: 28rpx;
+  color: rgba(255, 255, 255, 1);
+  background: rgba(255, 118, 114, 1);
+}
+.notosettle{
+  background: #cccccc;
+}
+
+.tosettle .nead {
+  width: 100%;
+  height: 100%;
+  color: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 118, 114, 0.3);
+}
+
+/* 选规格 */
+
+.spaci, .spaci .bg, .selectedGoods, .selectedGoods .bg, .goodsInfo .bg {
+  bottom: 0;
+  left: 0;
+  top: 0;
+  right: 0;
+  z-index: 999;
+}
+
+.spaci, .spaci .bg {
+  z-index: 1001;
+}
+
+.spaci .bg, .selectedGoods .bg {
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.spaci .content {
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 70%;
+  z-index: 1001;
+  background: #fff;
+}
+
+.selectedGoods, .selectedGoods .bg, .goodsInfo, .goodsInfo .bg,
+.goodsInfo .content {
+  bottom: 100rpx;
+}
+
+.selectedGoods .bg, .goodsInfo, .goodsInfo .bg {
+  height: calc(100% - 100rpx);
+}
+
+.scontent .goods {
+  padding: 32rpx 32rpx 10rpx 32rpx;
+}
+
+.scontent .glist_content .title {
+  font-size: 36rpx;
+  padding-right: 36rpx;
+}
+
+.spaci .scontent {
+  height: 100%;
+}
+
+.spaci .button {
+  padding: 32rpx;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 80rpx;
+  background: #fff;
+}
+
+.spaci .button button {
+  height: 80rpx;
+  line-height: 80rpx;
+  background: rgba(255, 118, 114, 1);
+  font-size: 28rpx;
+  color: #fff;
+  width: calc(100% - 64rpx);
+  margin: 0;
+}
+
+.scontent .fa-close, .scontent icon.fa-close {
+  top: 20rpx;
+  right: 30rpx;
+  color: rgba(153, 153, 153, 1);
+}
+
+.spaciList .title {
+  height: 34rpx;
+  font-size: 24rpx;
+  color: rgba(51, 51, 51, 1);
+  line-height: 34rpx;
+}
+
+.spaciList .li_list {
+  padding-bottom: 32rpx;
+}
+
+.spaciList .li_list .l {
+  font-size: 24rpx;
+  color: rgba(51, 51, 51, 1);
+  line-height: 46rpx;
+  padding: 14rpx;
+  min-width: 152rpx;
+  background: rgba(153, 153, 153, 0.1);
+  border-radius: 4rpx;
+  margin: 32rpx 32rpx 0 0;
+}
+
+.spaciList .li_list .active {
+  color: rgba(255, 118, 114, 1);
+  font-weight: 600;
+  background: rgba(255, 118, 114, 0.3);
+}
+
+.spaciList {
+  padding: 0 32rpx;
+  height: calc(100% - 360rpx);
+}
+
+.spaciList scroll-view, .selectedGoods .selectContent {
+  height: 100%;
+}
+
+.spaciList .desc {
+  padding: 32rpx 0;
+}
+
+/* 已选商品 */
+
+.selectedGoods .content {
+  width: 100%;
+  left: 0;
+  bottom: 100rpx;
+  z-index: 1001;
+  background: #fff;
+}
+
+.selectedGoods .scrollContent .li {
+  padding: 32rpx;
+  border-bottom: 2rpx solid rgba(153, 153, 153, 0.1);
+}
+
+.selectedGoods .scrollContent .li .name {
+  max-width: calc(100% - 330rpx);
+  font-size: 32rpx;
+  color: rgba(51, 51, 51, 1);
+  line-height: 44rpx;
+}
+
+.selectedGoods .scrollContent .li .name .gitemname {
+  padding-bottom: 10rpx;
+}
+
+.selectedGoods .scrollContent .li .name .spaciMsg,
+.selectedGoods .scrollContent .li .packageFee {
+  font-size: 24rpx;
+  color: rgba(153, 153, 153, 1);
+}
+
+.selectedGoods .scrollContent .li .desc {
+  width: 330rpx;
+  text-align: right;
+}
+
+.selectedGoods .scrollContent .li .desc view {
+  vertical-align: none;
+}
+
+.selectedGoods .scrollContent .li .desc .money {
+  margin-right: 10rpx;
+  font-size: 26rpx;
+  line-height: 44rpx;
+}
+
+.selectedGoods .scrollContent {
+  max-height: calc(60vh - 112rpx);
+  overflow-y: scroll;
+  /* height:  100%; */
+}
+
+.selectedGoods .content .title {
+  height: 72rpx;
+  line-height: 72rpx;
+  background: rgba(153, 153, 153, 0.2);
+  font-size: 28rpx;
+  color: rgba(153, 153, 153, 1);
+  padding-left: 32rpx;
+}
+
+.selectedGoods .content .title .icon {
+  right: 0;
+  top: 0;
+  height: 72rpx;
+  line-height: 72rpx;
+  font-size: 24rpx;
+  padding-left: 10rpx;
+  padding-right: 32rpx;
+  color: rgba(153, 153, 153, 1);
+}
+
+.selectedGoods .selectContent .buttom {
+  height: 40rpx;
+  background: rgba(153, 153, 153, 0.1);
+}
+
+.selectedGoods .selectContent .tip {
+  padding: 32rpx 0;
+  font-size: 24rpx;
+}
+
+.goodsInfo {
+  width: 100%;
+  bottom: 100rpx;
+  left: 0;
+  z-index: 997;
+}
+
+.goodsInfo .bg {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.goodsInfo .content {
+  max-height: 85%;
+  width: 100%;
+  /* background: rgb(31, 25, 25); */
+  background: rgb(255, 255, 255);
+  overflow-y: scroll;
+  z-index: 999;
+}
+
+.goodsInfo .content .pcontent {
+  padding: 32rpx;
+}
+
+.goodsInfo .content .logo{
+  padding:16rpx 32rpx 0;
+  overflow: hidden;
+}
+.goodsInfo .content .logo image {
+  width: 100%;
+  height: calc( ( 100vw - 64rpx ) / 1.23);
+  border-radius: 10rpx; 
+}
+
+.goodsInfo .content .title {
+  margin-top: 32rpx;
+}
+
+.goodsInfo .content .title .stitle {
+  font-size: 36rpx;
+  color: rgba(51, 51, 51, 1);
+  line-height: 50rpx;
+  padding-right: 200rpx;
+}
+
+.goodsInfo .content .toCart {
+  top: 0;
+  right: 0;
+}
+
+.goodsInfo .content .description {
+  font-size: 24rpx;
+  color: rgba(153, 153, 153, 1);
+  line-height: 34rpx;
+}
+
+.goodsInfo .content .money {
+  font-size: 36rpx;
+  color: rgba(255, 107, 103, 1);
+  line-height: 50rpx;
+  margin-top: 6rpx;
+}
+
+.goodsInfo .content .money text {
+  font-size: 20rpx;
+  color: rgba(153, 153, 153, 1);
+  font-weight: 100;
+  line-height: 28rpx;
+}
+
+.goodsInfo .content .goodsdescription {
+  margin-top: 20rpx;
+}
+
+.goodsInfo .content .goodsdescription .descriptionTitle {
+  font-size: 28rpx;
+  color: rgba(51, 51, 51, 1);
+  line-height: 40rpx;
+}
+
+.goodsInfo .content .goodsdescription .descriptionmsg {
+  margin-top: 6rpx;
+  font-size: 24rpx;
+  color: rgba(51, 51, 51, 1);
+  line-height: 34rpx;
+}
+
+.goodsInfo .content .addToCart {
+  height: 44rpx;
+  line-height: 44rpx;
+  background: rgba(255, 118, 114, 1);
+  border-radius: 22rpx;
+  font-size: 20rpx;
+  color: rgba(255, 255, 255, 1);
+  width: 160rpx;
+}
+
+.goodsInfo .fa-close {
+  bottom: 79%;
+  right: 26rpx;
+  z-index: 1000;
+}
+
+
+.swiperGoodsLi {
+  padding-bottom: 1rpx;
+}
+
+/* .swiperGoodsLi .gtitle{background: pink;} */
+
+/* 商家 */
+
+.shop .scrollView, .feeContent, .feeContent .scrollView {
+  width: 100%;
+  height: 100%;
+}
+
+.shop .licontent {
+  margin-top: 40rpx;
+  padding: 0 32rpx;
+}
+
+.shop .htitle {
+  font-size: 32rpx;
+  color: rgba(51, 51, 51, 1);
+  line-height: 44rpx;
+}
+
+.shop .hstitle {
+  font-size: 24rpx;
+  color: rgba(153, 153, 153, 1);
+  line-height: 34rpx;
+  margin-top: 16rpx;
+}
+
+.shop .locationImage {
+  white-space: nowrap;
+  margin-top: 16rpx;
+}
+
+.shop .locationImage image {
+  margin-right: 20rpx;
+  width: 200rpx;
+  height: 150rpx;
+}
+
+.shop .buttonfood {
+  height: 50rpx;
+  background: rgba(255, 118, 114, 1);
+  border: 0;
+  color: #fff;
+  width: 200rpx;
+  font-size: 24rpx;
+  line-height: 50rpx;
+  margin-left: 0;
+}
+
+.shopMsg {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1001;
+  background: #fff;
+}
+
+.shopMsg .content {
+  height: calc(100vh - 50px);
+  overflow-y: scroll;
+}
+
+.shopMsg .close {
+  height: 50px;
+  line-height: 50px;
+}
+
+.shopMsg .close view {
+  width: 200rpx;
+  margin: 0 auto;
+  font-size: 52rpx;
+  color: rgba(153, 153, 153, 1);
+}
+
+.shopMsg .titleContent {
+  margin-top: 60rpx;
+  padding: 0 32rpx;
+}
+
+.shopMsg .titleContent .title {
+  font-size: 28rpx;
+  color: rgba(51, 51, 51, 1);
+  line-height: 40rpx;
+}
+
+.shopMsg .titleContent .description {
+  font-size: 24rpx;
+  color: rgba(51, 51, 51, 1);
+  line-height: 34rpx;
+  margin-top: 6rpx;
+}
+
+.shopMsg .storeName {
+  font-size: 36rpx;
+  color: rgba(51, 51, 51, 1);
+  line-height: 50rpx;
+  margin-top: 40rpx;
+}
+
+.shopMsg .store {
+  width: 100%;
+  height: 200rpx;
+}
+
+.shopMsg .logo {
+  width: 160rpx;
+  height: 160rpx;
+  left: 50%;
+  bottom: -22rpx;
+  margin-left: -80rpx;
+}
+
+.shopMsg .store .bg image {
+  width: 100%;
+}
+
+.shopMsg .logo image {
+  width: 100%;
+  height: 100%;
+}
+
+.settle .nead {
+  line-height: 50px;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 28rpx;
+}
+
+/* 免费餐 */
+
+.feebanner image {
+  width: 100%;
+  height: calc(31.2vw);
+}
+
+.feeList .li {
+  width: calc(42.5vw - 20rpx);
+  margin-left: 5%;
+  margin-top: 20rpx;
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0px 2rpx 12rpx 0px rgba(75, 0, 0, 0.17);
+  border-radius: 12rpx;
+  padding: 10rpx;
+}
+
+.feeList .li .logo, .feeList .li .logo image {
+  width: 100%;
+  height: calc((42.5vw - 20rpx)*2/3);
+}
+
+.feeList .li .title {
+  height: 44rpx;
+  font-size: 32rpx;
+  color: rgba(51, 51, 51, 1);
+  line-height: 44rpx;
+  margin-bottom: 8rpx;
+  margin-top: 12rpx;
+}
+
+.feeList .li .money {
+  height: 44rpx;
+  font-size: 32rpx;
+  color: rgba(255, 107, 103, 1);
+  line-height: 44rpx;
+}
+
+.feeList .li .num {
+  padding-top: 5rpx;
+  height: 34rpx;
+  font-size: 24rpx;
+  color: rgba(136, 136, 136, 1);
+  line-height: 34rpx;
+  margin-right: 10rpx;
+}
+
+.feeList .logo .fee {
+  top: 0;
+  right: 0;
+  width: 80rpx;
+  height: 40rpx;
+  line-height: 50rpx;
+  background: rgba(255, 227, 129, 1);
+  color: rgba(222, 91, 25, 1);
+  font-size: 24rpx;
+}
+
+.feeList .logo .star {
+  height: 0;
+  width: 0;
+  top: 40rpx;
+  right: 0;
+  border-width: 20rpx 40rpx 0;
+  border-style: solid;
+  border-color: rgba(255, 227, 129, 1) transparent transparent;
+  /* width:0;
+  height: 0;
+  border-width:0 45rpx 45rpx;
+  border-style: solid;
+  border-color:transparent transparent rgba(255,227,129,1); */
+}
+
+.goodsInfo .content .feedesc {
+  width: 200rpx;
+}
+
+.goodsInfo .content .feeActive {
+  width: 200rpx;
+  margin-bottom: 10rpx;
+}
+
+.goodsInfo .content .feeActive1 {
+  background: rgba(255, 185, 0, 1);
+}
+
+.goodsInfo .content .feeActive2 {
+  background: rgba(134, 174, 255, 1);
+}
+
+.goodsInfo .content .feeActive3 {
+  background: rgba(255, 107, 103, 1);
+}
+
+.goodsInfo .content .feeActive0 {
+  background: rgba(153, 153, 153, 1);
+}
+
+.closeStore {
+  color: #fff;
+  font-size: 32rpx;
+  padding-left: 70px;
+  top: 0;
+  left: 0;
+  line-height: 50px;
+  width: 100vw;
+  background: rgba(0, 0, 0, 0.1);
+}

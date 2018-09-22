@@ -1,0 +1,336 @@
+/*
+图标官网：https://fontawesome.com/icons?d=gallery&m=free
+转换网站：https://transfonter.org/
+*/
+@import "./css/fa-new-file.wxss";
+
+.nfar {
+  font-family: 'FontAwesome';
+}
+
+/*  zdh  */
+/* 右箭头 */
+.fa-angle-right:before {
+    content: "\f105";
+}
+
+/* 满星星  */
+.star_full:before {
+  content: "\f005";
+}
+
+/* 空星星  */
+.star_o:before {
+  content: "\f006";
+}
+/* 指示方向 向上 */
+.fa-angle-double-up:before {
+    content: "\f102";
+}
+/* 转 */
+.fa-spinner:before {
+    content: "\f110";
+}
+.faspin {
+    -webkit-animation: faspin 1s infinite linear;
+    animation: faspin 1s infinite linear;
+}
+@keyframes faspin{
+  0%{
+    transform: rotate(0deg);
+    -webkit-transform: rotate(0deg)
+  }
+  100%{
+    transform: rotate(359deg);
+    -webkit-transform: rotate(359deg)
+  }
+}
+@-webkit-keyframes faspin{
+  0%{
+    transform: rotate(0deg);
+    -webkit-transform: rotate(0deg)
+  }
+  100%{
+    transform: rotate(359deg);
+    -webkit-transform: rotate(359deg)
+  }
+}
+/* 删除 */
+
+.fa-trash-o:before {
+  content: "\f014";
+}
+
+/* 搜索 */
+
+.fa-search:before {
+  content: "\f002";
+}
+
+/* 购物减 */
+.fa-minus-square-o:before {
+    content: "\f147";
+}
+/* 购物加 */
+.fa-plus-square:before {
+    content: "\f0fe";
+}
+/*  */
+.fa-times-circle-o:before {
+    content: "\f05c";
+}
+.fa-trash:before {
+    content: "\f1f8";
+}
+/* 勾选 */
+.fa-check-circle:before {
+    content: "\f058";
+}
+/* 圆圈 */
+.fa-circle-o:before {
+    content: "\f10c";
+}
+/* 关闭 */
+.fa-close:before{
+    content: "\f00d";
+}
+/* Example of angle-down  */
+
+.fa-angle-down-before:before {
+  content: "\f107";
+}
+
+.fa-angle-down-after:after {
+  content: "\f107";
+}
+/* 定位 */
+.fa-map-marker:before {
+    content: "\f041";
+}
+/* Example of angle-down  */
+
+.fa-angle-up-before:before {
+  content: "\f106";
+}
+
+.fa-angle-up-after:after {
+  content: "\f106";
+}
+/* 电话 */
+.fa-phone:before {
+    content: "\f095";
+}
+
+/* 单行超出隐藏  */
+
+.line_overhide {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+/* 遮罩层 */
+
+/*  */
+
+.mask {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 2018;
+}
+
+/*   */
+
+.relative {
+  position: relative;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.fixed {
+  position: fixed;
+}
+.flex{
+  display: -webkit-box; /* OLD - iOS 6-, Safari 3.1-6 */
+  display: -moz-box; /* OLD - Firefox 19- (buggy but mostly works) */
+  display: -ms-flexbox; /* TWEENER - IE 10 */
+  display: -webkit-flex; /* NEW - Chrome */
+  display: flex; /* NEW, Spec - Opera 12.1, Firefox 20+ */
+}
+.flexCenter{
+  justify-content: center;
+  align-items: center;
+}
+.flexEnd{
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.transition{
+  transition: all .4s;
+  -webkit-transition: all .4s;
+  -moz-transition: all .4s;
+  -ms-transition: all .4s;
+  -o-transition: all .4s;
+}
+
+.clearfix:after {
+  display: block;
+  height: 0;
+  content: '';
+  clear: both;
+  visibility: hidden;
+}
+
+.overflowHide{
+  overflow: hidden;
+}
+.mainbg{
+  background: #FF6B67;
+}
+.maincolor{
+  color: #FF6B67;
+}
+
+.disblock{display: block;}
+.disinlineblock{display: inline-block;}
+.disnone{display: none;}
+.disinlneblock{display: inline-block;vertical-align:top;}
+.l{float: left;}
+.r{float: right;}
+.w100{width:100%;}
+.w30{  width:30%;}
+.w25{  width:25%;}
+.w20{  width:20%;}
+.t_center{text-align: center;}
+image{vertical-align:bottom;}
+.loading{padding:30rpx;}
+.loading text{font-size:24rpx;color:#999999;}
+
+.disblock {
+  display: block;
+}
+
+.disinlineblock {
+  display: inline-block;
+}
+
+.disnone {
+  display: none;
+}
+
+.disinlneblock {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.l {
+  float: left;
+}
+
+.r {
+  float: right;
+}
+
+.w25 {
+  width: 25%;
+}
+
+.t_center {
+  text-align: center;
+}
+
+image {
+  vertical-align: bottom;
+}
+
+.loading {
+  padding: 30rpx;
+}
+
+.loading text {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.font600,.fw600 {
+  font-weight: 600;
+}
+.font100,fw100{
+  font-weight: 100;
+}
+.fs18{
+  font-size: 36rpx;
+}
+.fs16{
+  font-size: 32rpx;
+}
+.fs15{
+  font-size: 30rpx;
+}
+.fs14{
+  font-size: 28rpx;
+}
+.fs13{
+  font-size: 26rpx;
+}
+.fs12{
+  font-size: 24rpx;
+}
+.fs10{
+  font-size: 20rpx;
+}
+image.image100{
+  width:100%;
+  height: 100%;
+}
+/* 加号 */
+.fa-plus-circle:before {
+    content: "\f055";
+}
+.fa-plus:before {
+    content: "\f067";
+}
+/* 减号 */
+.fa-minus-circle:before {
+    content: "\f056";
+}
+.fa-minus:before {
+    content: "\f068";
+}
+.nodata{
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+.nodata image{
+  width:392rpx;
+  height:294rpx;
+}
+.nodata text{
+  margin-top:50rpx;
+  color:rgba(153,153,153,1);
+}
+.mr10{
+  margin-right: 20rpx;
+}
+.ml3{
+  margin-left: 6rpx;
+}
+.ml5{
+  margin-left: 10rpx;
+}
+.ml10{
+  margin-left: 20rpx;
+}
+.c999999{
+  color:#999999;
+}
+.lineThrough{
+  text-decoration:line-through;
+}

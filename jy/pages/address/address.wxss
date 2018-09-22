@@ -1,0 +1,58 @@
+.address_view {
+  height: 100rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 20rpx 60rpx;
+}
+
+.address_left {
+  width: 90%;
+}
+
+.address_name {
+  color: #333;
+  margin-bottom: 10rpx;
+}
+
+.address_contact {
+  color: #999;
+}
+
+.address_right {
+  width: 10%;
+}
+
+.edit_icon {
+  height: 40rpx;
+  width: 40rpx;
+}
+
+.address-split {
+  height: 5rpx;
+  background: #f8f8f8;
+}
+
+.add_address {
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  background: white;
+}
+
+.address_text {
+  margin-left: 20rpx;
+  color: #ff6b67;
+}
+.addressLine{
+  padding:32rpx 32rpx 0 32rpx;
+}
+.addressLine image{
+  width:24rpx;
+  height:30rpx;
+  margin-right:20rpx;
+}

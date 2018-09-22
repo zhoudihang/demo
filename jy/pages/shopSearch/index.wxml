@@ -1,0 +1,67 @@
+<!--店铺搜索-->
+<wxs src="../../wxs/filters.wxs" module="filters" />
+
+<!-- 搜索 -->
+<view class='search'>
+  <view class='relative'>
+    <view class='searchContent'>
+      <view class='nfar searchInput relative'>
+        <input placeholder="输入店铺/商品名称" value='{{keyword}}' bindinput='inputStoreGoodsName'  bindconfirm="search" confirm-type="search" />
+        <view class='icon fa-search absolute'></view>
+      </view>
+    </view>
+    <view class='searchButton t_center absolute' bindtap='search'>搜索</view>
+  </view>
+</view>
+<!-- 店铺列表 -->
+<view class='store_list' wx:if="{{res.shopList}}">
+  <view class='li clearfix' 
+        wx:for="{{res.shopList}}" 
+        wx:key="skey" 
+        wx:for-index="sinx" 
+        wx:for-item="sitem" 
+        bindtap='navigateTo' 
+        data-uri="../store/index?id={{sitem.id}}">
+    <view class='store_logo l'>
+        <block wx:if="{{sitem.logoUrl==''||sitem.logoUrl}}">
+      <image src='{{filters.imageScale200(sitem.logoUrl)}}' alt="{{sitem.name}}" mode="aspectFill"></image>
+        </block>
+        <block wx:else>
+          <image src='/images/default_logo.png' alt="{{sitem.name}}"></image>
+        </block>
+    </view>
+    <view class='store_content'>
+      <view class='store_name clearfix'>
+        <view class='name font600 l line_overhide'>{{sitem.name}}</view>
+        <view class='tiemdistance r'>{{sitem.distince}}</view>
+      </view>
+      <view class='store_volume'>
+        <text>月售{{sitem.orderCount}} </text>
+        <text>起送¥{{sitem.minPrice}}</text>
+        <text>配送¥{{sitem.shippingFee}}</text>
+      </view>
+      <view class='goods_list' wx:for="{{sitem.productList}}" wx:key="gkey" wx:for-index="ginx" wx:for-item="gitem" style="display:{{sitem.showMore ? 'block' : ginx < 2 ? 'block' : 'none'}}">
+        <view class='clearfix'>
+          <view class='goods_logo l'>
+            <image src='{{filters.imageScale400(gitem.pictureUrl)}}' alt="{{gitem.name}}" mode="aspectFill"></image>
+          </view>
+          <view class='goods_content'>
+            <view class='goods_name line_overhide font600'>{{gitem.name}}</view>
+            <view class='goods_volume'>月售{{gitem.saled}} 赞{{gitem.goodCommentNum}}</view>
+            <view class='howmoeny'>
+              <text class='money font600'>¥{{gitem.price}}</text>
+              <!-- <text class='dismoney'>¥55</text> -->
+            </view>
+          </view>
+        </view>
+      </view>
+
+            <view class='seamore nfar' data-showhide="false" wx:if="{{sitem.productList.length > 2}}">
+              <text data-index="{{sinx}}" style="display:{{!sitem.showMore ? 'inline-block' : 'none'}}" catchtap='showMore' class='fa-angle-down-after'>查看其他{{sitem.productList.length-2}}个商品</text>
+              <text data-index="{{sinx}}" style="display:{{sitem.showMore ? 'inline-block' : 'none'}};" catchtap="hideMore" class='fa-angle-up-after'>收起</text>
+            </view>
+    </view>
+  </view>
+    <import src="/template/loading.wxml"/>
+    <template is="item" data="{{list:res.shopList,isloaded:isloaded,msg: '~我的世界竟然没有您想要的~'}}"/>
+</view>

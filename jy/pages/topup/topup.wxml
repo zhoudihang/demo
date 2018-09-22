@@ -1,0 +1,42 @@
+<view class='container'>
+
+  <!-- 余额 -->
+  <view class='topup_top'>
+    <text class='top_title'>余额</text>
+    <text class='top_money'>¥{{userInfo.balance}}</text>
+    <image class='top_background' src='/images/topup_balance_background.png'></image>
+    <image class='top_ring' src='/images/topup_balance_ring.png'></image>
+  </view>
+
+  <!-- 充值金额 -->
+  <view class='topup_money'>
+    <view class='money_left'>
+      <text>请选择充值金额</text>
+    </view>
+    <view class='money_middle'>
+      <text>{{money}}</text>
+    </view>
+    <view class='money_right'>
+      <text>元</text>
+    </view>
+  </view>
+
+  <!-- 充值金额 -->
+  <view class='topup_choose'>
+    <view class='choose_money {{money==10?"choose":""}}' data-money='10' bindtap='changeMoney'>10元</view>
+    <view class='choose_money {{money==30?"choose":""}}' data-money='30' bindtap='changeMoney'>30元</view>
+    <view class='choose_money {{money==50?"choose":""}}' data-money='50' bindtap='changeMoney'>50元</view>
+    <view class='choose_money {{money==100?"choose":""}}' data-money='100' bindtap='changeMoney'>100元</view>
+    <view class='choose_money {{money==300?"choose":""}}' data-money='300' bindtap='changeMoney'>300元</view>
+    <view class='choose_money {{other===true?"choose":""}}' bindtap='changeOther'>
+      <text class='{{other==true?"display":""}}'>自定义</text>
+      <input class='other_money {{other!=true?"display":""}}' focus='{{other}}' type='digit' maxlength='5' bindinput='input_money' value='{{money}}'></input>
+    </view>
+  </view>
+
+  <!-- 充值按钮 -->
+  <view class='topup_button_view' bindtap='topup'>
+    <button class='topup_button' open-type="getUserInfo">微信充值</button>
+  </view>
+
+</view>

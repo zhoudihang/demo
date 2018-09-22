@@ -1,0 +1,58 @@
+// 滤镜 过滤器  <wxs src="../../wxs/filters.wxs" module="filters" />
+var filters = {};
+filters.JSONparse = function(value) {
+  return JSON.parse(value);
+}
+filters.JSONstringify = function(value) {
+  return JSON.stringify(value);
+}
+/*
+    square200：宽200高200正方形裁剪图
+    square400：宽400高400正方形裁剪图
+    scale200：等比缩放200x200的缩略图
+    scale400：等比缩放400x400的缩略图
+*/ 
+filters.imageSquare200 = function(value) {
+  return value + '@square200'
+}
+filters.imageSquare400 = function (value) {
+  return value + '@square400'
+}
+filters.imageScale200 = function (value) {
+  return value + '@scale200'
+}
+filters.imageScale400 = function (value) {
+  return value + '@scale400'
+}
+filters.toFixed2 = function(value){
+  return parseFloat(value).toFixed(2);
+}
+// 处理距离
+filters.distance = function (value) {
+  value = parseFloat(value);
+  return value < 1 ? value*1000 + 'm' : value.toFixed(2)+'km';
+}
+  
+//处理文字大小
+// @value = 
+// @width = 当前文字所在的最大宽度
+// @max = 最大
+// @min = 最小
+filters.fontSize = function (value, width, max, min, unit){
+  var len = value.length * 1.5;
+  var fontSize;
+  if (width / len > max){
+    fontSize = max;
+  } else if (width / len < min){
+    fontSize = min;
+  }else{
+    fontSize = width / len;
+  }
+  return fontSize + unit;
+} 
+
+// 处理距离
+filters.replace_n = function (value) {
+  return value.replace('\n','');
+}
+module.exports = filters;

@@ -1,0 +1,576 @@
+<!--店铺首页-->
+<!--  -->
+<wxs src="../../wxs/filters.wxs" module="filters" />
+
+ <view  class='header calcSwiper' wx:if="{{res.id}}">
+        <view class='store relative' bindtap='showOrCloseShopMsg'>
+            <view class='absolute bg'>
+            <block wx:if="{{res.logoUrl==''||res.logoUrl}}">
+                <image src='{{filters.imageScale200(res.logoUrl)}}' mode="scaleToFill"></image>
+            </block>
+            <block wx:else>
+              <image src='/images/default_logo.png'  mode="scaleToFill"></image>
+            </block>
+            </view>
+            <view class='absolute bgshow'></view>
+            <view class='logo absolute'>
+            <block wx:if="{{res.logoUrl==''||res.logoUrl}}">
+                <image src='{{filters.imageScale200(res.logoUrl)}}'></image>
+            </block>
+            <block wx:else>
+              <image src='/images/default_logo.png'></image>
+            </block>
+            </view>
+            <view class='content relative'>
+                <view class='title line_overhide relative font600'>
+                    {{res.name}}
+                    <view class='fa-phone nfar absolute t_center flex' catchtap='tel'></view>
+                </view>
+                <view class='time line_overhide'>营业时间：{{res.openTime}}-{{res.closeTime}} </view>
+                <view class='relative fs12' wx:if="{{res.description}}">
+                    <text class='absolute ' style='top:0;left:0;'>公告 : </text>
+                    <view class='time overflowHide notice' style='margin-left:3em;' id='storedescriptionBox'>
+                        <view  animation="{{animationData}}" style='white-space:nowrap;' >
+                          <text style='margin-right:50px;' id='storedescription' >{{filters.replace_n(res.description)}}</text>      
+                          <text style='margin-right:50px;' wx:if="{{marquee}}">{{filters.replace_n(res.description)}}</text>                
+                        </view>
+                    </view>
+                </view>
+                <view class='time line_overhide notice' wx:else>暂无公告 </view>
+            </view>
+        </view>
+        <!-- 免 -->
+        <view class='mianmsg fs12' style='padding:10rpx 32rpx; 0'>
+            <!--<image src='/images/logo.png'></image> -->
+            <text style='background:rgba(255,185,0,1);border-radius:3rpx;padding:3px;margin-right:15rpx;color:#ffffff;'>免</text>
+            <text wx:if="{{isShowFeeStart && isShowFixedButtom && res.free && menuCurrent == 0}}">免费餐进行中</text>
+            <text>请随时关注免费餐出没哦</text>
+        </view>
+</view>
+<!-- tap 菜单栏 -->
+<view class='menu flex relative calcSwiper font600'>
+    <view class='tap t_center {{menuCurrent==0 ?"active":""}}' bindtap='menutap' data-current="0">
+        <text class='disinlineblock'>商品</text>
+    </view>
+    <view wx:if="{{res.free}}" class='tap t_center {{menuCurrent==1 ?"active":""}}' bindtap='menutap' data-current="1"  wx:if="{{res.free}}">
+        <text class='disinlineblock'>免费餐</text>
+    </view>
+    <view class='tap t_center {{menuCurrent==(res.free ? 2 : 1) ?"active":""}}' bindtap='menutap' data-current="{{res.free ? 2 : 1}}">
+        <text class='disinlineblock'>商家</text>
+    </view>
+</view>
+
+<!-- 点餐 免费餐 商家 -->
+<view wx:if="{{res}}"  id="order_dishes" >
+
+<swiper class='meneSwiper' current='{{menuCurrent}}' bindchange="menuSwiperFinish" style='height:{{meneSwiperLessHeight - (menuCurrent == 0 ? 50 : 0 )}}px;'>
+    <!-- <view class='relative' style='height: calc(100% - 100rpx);'> -->
+        <swiper-item>
+              <view class='order_dishes relative' wx:if="{{res.sortList}}">
+                  <view class='submenu t_center'>
+                        <scroll-view scroll-y>
+                            <view class='relative li flex flexCenter swiperSubMenuLi {{index==menuli?"active":""}}'
+                                id='li_{{index}}'
+                                wx:for="{{res.sortList}}" 
+                                wx:key="key" 
+                                wx:for-index="index" 
+                                wx:for-item="item" 
+                                bindtap='chooseMenu' 
+                                data-index='{{index}}'>
+                                
+                                <view>
+                                  <image src='/images/ex.png' style='width:24rpx;height:24rpx;margin-right:10rpx;vertical-align:-1rpx;' wx:if='{{item.isBook}}'></image>
+                                  <text>{{item.name}}</text>
+                                </view>
+                                <view class='num t_center absolute' hidden='{{item.addListnum==0}}'>{{item.addListnum}}</view>
+                                <!-- <view class='num t_center absolute'>99</view> -->
+                            </view>
+                        </scroll-view>
+                  </view>
+                  <view class='goods_list'>
+                        <scroll-view scroll-y  class='meneSwiperScrollView' bindscroll="goodsListScroll" id='goods_list' scroll-top="{{goodsListScrollTop}}">
+                            <view class='li swiperGoodsLi' 
+                                  id='goods_list_{{index}}' 
+                                  wx:for="{{res.sortList}}" 
+                                  wx:key="key" 
+                                  wx:for-index="index" 
+                                  wx:for-item="item">
+                                <view class='gtitle'>
+                                  <text class='fs14'>{{item.name}}</text>
+                                  <text class='fs12' wx:if='{{item.isBook}}' style='color:rgba(255, 107, 103, 1);'> （目前仅支持次日预订）</text>
+                                </view>
+                                <view class='list_content'>
+                                    <view class='list_li clearfix' 
+                                          wx:for="{{item.productList}}
+                                          wx:key="goodskey" 
+                                          wx:for-index="gindex" 
+                                          wx:for-item="gitem"
+                                          wx:if="{{gitem.status=='ONLINE'}}"
+                                          >
+                                          <view class='l goodslogo relative' 
+                                                data-index='{{index}}'
+                                                data-gindex='{{gindex}}'
+                                                bindtap='clickGoods'
+                                                >
+                                                <view class='absolute fs12' style='padding:6rpx 10rpx;color:RGBA(220, 85, 20, 1);background:linear-gradient(180deg,rgba(255,243,183,1) 0%,rgba(255,227,129,1) 100%);' wx:if='{{gitem.isBook}}'>预订</view>
+                                                <image src='{{filters.imageScale200(gitem.pictureUrl)}}'></image></view>
+                                          <view class='glist_content overflowHide'>
+                                                <view class='title font600 line_overhide'
+                                                    data-index='{{index}}'
+                                                    data-gindex='{{gindex}}'
+                                                    bindtap='clickGoods'
+                                                >{{gitem.name}}</view>
+                                                <view class='description line_overhide'>月销{{gitem.saled}}</view>
+                                                <view class='clearfix'>
+                                                    <view class='money l'>¥{{gitem.price}}<text class='disinlineblock fs10'>起</text>
+                                                       <text class='lineThrough ml3 fs12' wx:if='{{gitem.bookOriginalPrice}}'>¥{{gitem.bookOriginalPrice}}</text>
+                                                    </view>
+                                                    <view class='desc r flex flexEnd' bindtap="catchtopGoods">
+                                                        <view class='changeDesc t_center mainbg ' 
+                                                              wx:if="{{gitem.specV1List.length!=0}}" 
+                                                              bindtap='showSpaci'
+                                                              data-index='{{index}}' 
+                                                              data-gindex='{{gindex}}'>
+                                                              选规格</view>
+                                                        <view class='clearfix flex ' wx:else>
+                                                        <!-- 自己新增字段 isAdd 是否添加  默认false -->
+                                                        <!-- 自己新增字段 addnum 添加数量 默认为0-->
+                                                          <view class='icon flex' hidden='{{gitem.addnum == 0}}' bindtap='changeLessToCart' data-index='{{index}}' data-gindex='{{gindex}}' data-addnum='{{gitem.addnum}}' >
+                                                          <image src='/images/goodsLess.png'></image>
+                                                          </view>
+                                                          <view class='disinlineblock num t_center' hidden='{{gitem.addnum == 0}}'>{{gitem.addnum}}</view>
+                                                          <view class='icon flex' bindtap='changeAddToCart' data-index='{{index}}' data-gindex='{{gindex}}' data-addnum='{{gitem.addnum}}' >
+                                                          <image src='/images/goodsAdd.png'></image>
+                                                          </view>
+                                                        </view>
+                                                    </view>
+                                                </view>
+
+                                          </view>                                      
+
+                                    </view>
+                                </view>
+                            </view>
+                        </scroll-view>
+                  </view>
+              </view>
+        </swiper-item>
+    <!-- </view> -->
+    <!-- 免费餐 -->
+    <swiper-item wx:if="{{res.free}}">
+       <view class='feeContent'>
+       <scroll-view scroll-y="true" class='scrollView'>
+         <view class='feebanner' bindtap='goFreeHall'>
+              <image src='../../images/advertising_default.jpg'></image>
+         </view>
+         <view class='goodsContent'>
+            <view class='feeList clearfix' 
+                  wx:for="{{feeList}}" 
+                  wx:key="key"
+                  wx:for-index="feeindex"
+                  wx:for-item="feeitem">
+                <view class='li l' 
+                      wx:for="{{feeitem.productList}}" 
+                      wx:key="key"
+                      wx:for-index="feegindex"
+                      wx:for-item="feegitem"
+                      data-feeindex='{{feeindex}}'
+                      data-feegindex='{{feegindex}}'
+                      bindtap='seeFeeInfo'
+                      >
+                    <view class='logo relative'>
+                        <image src='{{feegitem.pictureUrl}}'></image>
+                        <view class='absolute fee font600 t_center'>免费</view>
+                        <view class='star absolute'></view>
+                    </view>
+                    <view class='title line_overhide font600'>{{feegitem.name}}</view>
+                    <view class='clearfix'>
+                          <view class='l money font600'>¥{{feegitem.price}}</view>
+                          <view class='r num'>{{feegitem.number}}份</view>
+                    </view>
+                </view>
+            </view>
+          </view>
+         </scroll-view>
+         </view>
+    </swiper-item>
+    <swiper-item>
+       <view class='shop' >
+          <scroll-view scroll-y="true" class='scrollView'>
+              <view class='licontent'>
+                <view class='htitle'>营业时间</view>
+                <view class='hstitle'>{{res.openTime}}-{{res.closeTime}}</view>
+              </view>
+              <view class='licontent'>
+                <view class='htitle'>位置</view>
+                <view class='hstitle'>{{res.address}}{{res.address2}}</view>
+                <view class='locationImage' wx:if="{{res.pictureUrlSet}}">
+                    <scroll-view scroll-x="true">
+                        <image wx:for="{{res.pictureUrlSet.photosList}}"
+                               wx:key="key"
+                               wx:for-index="index"
+                               wx:for-item="item"
+                               bindtap='locationPreviewImage'
+                               data-current='{{item}}'
+                               mode="scaleToFill"
+                               src='{{filters.imageScale200(item)}}'></image>
+                    </scroll-view>
+                </view>
+              </view>
+              <view class='licontent'>
+                <view class='htitle'>食品安全档案</view>
+                  <button class='buttonfood' size="200" bindtap='showOrHideFoodSafetyArchives'>
+                      点击{{isShowFoodSafetyArchives ? '关闭' : '查看'}}
+                  </button>
+                  <view class='locationImage' wx:if="{{isShowFoodSafetyArchives}}">
+                      <scroll-view scroll-x="true">
+                          <image src='{{filters.imageScale200(res.pictureUrlSet.businessLicence)}}' 
+                                 mode="scaleToFill"
+                                 bindtap='foodPreviewImage'
+                                 data-current='{{res.pictureUrlSet.businessLicence}}'></image>
+                          <image src='{{filters.imageScale200(res.pictureUrlSet.foodLicence)}}' 
+                                 mode="scaleToFill"
+                                 bindtap='foodPreviewImage'
+                                 data-current='{{res.pictureUrlSet.foodLicence}}'></image>
+                          <image wx:for="{{res.pictureUrlSet.licenceList}}"
+                                wx:key="key"
+                                wx:for-index="index"
+                                wx:for-item="item"
+                                bindtap='foodPreviewImage'
+                                data-current='{{item}}'
+                                mode="scaleToFill"
+                                src='{{filters.imageScale200(item)}}'></image>
+                      </scroll-view>
+                  </view>
+              </view>
+          </scroll-view>
+        </view>
+    </swiper-item>
+</swiper>
+
+</view>
+<!-- 左侧菜单栏和商品 -->
+<view>
+     <!-- 左侧菜单栏 -->
+     <view>
+     
+     </view>
+     <!-- 商品 -->
+     <view>
+     
+     </view>
+</view>
+
+<!-- 选规格 -->
+<view class='spaci fixed' wx:if='{{spaci.isShow}}'>
+    <view class='bg fixed' bindtap='closeSpaci'></view>
+    <view class='content fixed'>
+          <view class='scontent relative'>
+              <!-- <view class='nfar fa-close absolute'></view> -->
+              <icon class='fa-close absolute' bindtap='closeSpaci'
+               type="cancel" size="20" color="rgba(153,153,153,1)"/>
+              <view class='goods clearfix'>
+                  <view class='l goodslogo'><image src='{{filters.imageScale200(spaci.goods.pictureUrl)}}'></image></view>
+                  <view class='glist_content overflowHide'>
+                        <view class='title font600 line_overhide'>{{spaci.goods.name}}</view>
+                        <view class='description overflowHide' hidden='{{spaci.goods.spaciMsg&&spaci.goods.spaciMsg==""}}'>已选：{{spaci.goods.spaciMsg}}</view>
+                        <view class='clearfix'>                         
+                          <view class='money l'>¥{{spaci.goods.price + spaci.goods.spaciPrice}}<text class='disinlineblock'>起</text></view>
+                          
+                        </view>
+                  </view>  
+              </view>
+              <view class='spaciList '>
+                <scroll-view scroll-y="true">
+                    <view class='li' 
+                          wx:for="{{spaci.goods.specV1List}}"
+                          wx:key="key"
+                          wx:for-index="index"
+                          wx:for-item="item">
+                          <view class="title">{{item.name}}</view>
+                          <view class='li_list clearfix'>
+                                <view class='l t_center {{litem.isSelect?"active":""}}'
+                                      wx:for="{{item.itemList}}"
+                                      wx:key="lkey"
+                                      wx:for-index="inx"
+                                      wx:for-item="litem"
+                                      data-price='{{litem.price}}'
+                                      data-spindex='{{index}}'
+                                      data-spinx='{{inx}}'
+                                      catchtap='chooseSpaci'
+                                >{{litem.label}}</view>
+                          </view>
+                    </view>
+                    <view class='clearfix'>
+                        <view class='desc r'>
+                            <view class='icon flex' bindtap='changeSpaciNumLess'>
+                            <image src='/images/goodsLess.png'></image>
+                            </view>
+                            <view class='disinlineblock num t_center'>{{spaci.addnum}}</view>
+                            <view class=' icon flex'
+                             bindtap='changeSpaciNumAdd'>
+                              <image src='/images/goodsAdd.png'></image>
+                             </view>
+                        </view>
+                    </view>
+                </scroll-view>
+              </view>
+              <view class='button absolute'><button catchtap='chooseSpaciOk'>选好了</button></view>
+          </view>
+    </view>
+</view>
+
+
+
+<!-- 点击商品显示商品详情 -->
+<view class='goodsInfo fixed' wx:if="{{goodsInfo.id}}">
+   <view class='bg fixed' bindtap='closeGoodsInfo'></view>
+   <!-- <icon class='nfar fa-close fixed' bindtap='closeGoodsInfo'
+               type="cancel" size="20" color="rgba(255,255,255,1)"/> -->
+   <view class='content fixed' style='bottom:{{goodsInfo.isFee ? "0rpx" : "100rpx"}}'>
+      <view class='logo relative'  bindtap='closeGoodsInfo'>
+      <!--  mode='widthFix' -->
+          <image src='{{goodsInfo.pictureUrl}}'></image>
+      </view>
+      <view class='pcontent'>
+          <view class='title relative'>
+              <view class='stitle line_overflow'>{{goodsInfo.name}}</view>
+              <!-- 免费餐商品详情 -->
+              <view class='absolute toCart' wx:if="{{goodsInfo.isFee}}">
+                  <view class='desc r feedesc'>
+                        <view class='addToCart t_center feeActive {{goodsInfo.room1Id ? "feeActive1" : "feeActive0"}}' 
+                              catchtap='toFeeActive'
+                              data-active='1'
+                              data-roomid='{{goodsInfo.room1Id}}'
+                              data-id='{{goodsInfo.id}}' 
+                              data-productId='{{goodsInfo.productId}}'>
+                               参与免费餐活动1
+                        </view>
+                        <view class='addToCart t_center feeActive {{goodsInfo.room2Id ? "feeActive2" : "feeActive0"}}' 
+                              catchtap='toFeeActive' 
+                              data-active='2'
+                              data-roomid='{{goodsInfo.room2Id}}'
+                              data-id='{{goodsInfo.id}}' 
+                              data-productId='{{goodsInfo.productId}}'>
+                               参与免费餐活动2
+                        </view>
+                        <view class='addToCart t_center feeActive {{goodsInfo.room3Id ? "feeActive3" : "feeActive0"}}' 
+                              catchtap='toFeeActive' 
+                              data-active='3'
+                              data-roomid='{{goodsInfo.room3Id}}'
+                              data-id='{{goodsInfo.id}}' 
+                              data-productId='{{goodsInfo.productId}}'>
+                              参与免费餐活动3
+                        </view>
+                  </view>              
+              </view>
+              <!-- 普通商品商品详情 -->
+              <view class='absolute toCart' wx:else>
+                                                <view class='desc r'>
+                                                    <view class='changeDesc t_center mainbg' 
+                                                          wx:if="{{goodsInfo.specV1List.length!=0}}" 
+                                                          catchtap='showSpaci'
+                                                          data-index='{{goodsInfo.index}}' 
+                                                          data-gindex='{{goodsInfo.gindex}}'>
+                                                          选规格</view>
+                                                    <view class='clearfix' wx:else>
+                                                    <!-- 自己新增字段 isAdd 是否添加  默认false -->
+                                                    <!-- 自己新增字段 addnum 添加数量 默认为0-->
+                                                      <view wx:if="{{res.sortList[goodsInfo.index].productList[goodsInfo.gindex].addnum!=0}}" class='flex'>
+                                                      <view class='icon flex' catchtap='changeLessToCart' data-index='{{goodsInfo.index}}' data-gindex='{{goodsInfo.gindex}}' ><image src='/images/goodsLess.png'></image></view>
+                                                      <view class='disinlineblock num t_center'>{{res.sortList[goodsInfo.index].productList[goodsInfo.gindex].addnum}}</view>
+                                                      <view class=' icon flex' catchtap='changeAddToCart' data-index='{{goodsInfo.index}}' data-gindex='{{goodsInfo.gindex}}'><image src='/images/goodsAdd.png'></image></view>
+                                                      </view>
+                                                      <view class='addToCart t_center' catchtap='changeAddToCart' data-index='{{goodsInfo.index}}' data-gindex='{{goodsInfo.gindex}}' wx:else> + 加入购物车</view>
+                                                    </view>
+                                                </view>
+              </view>
+          </view>
+          <view class='description'>月销{{goodsInfo.saled}} </view>
+          <view class='money font600'>¥{{goodsInfo.price}}<text class='fs10'>起</text>
+                <text class='lineThrough ml10 fs12' wx:if='{{goodsInfo.bookOriginalPrice}}'>¥{{goodsInfo.bookOriginalPrice}}</text>
+          </view>
+          <view class='goodsdescription'>
+            <view class='descriptionTitle'>商品描述</view>
+            <view class='descriptionmsg'>{{goodsInfo.description||''}}</view>
+          </view>
+      </view>
+   </view>
+</view>
+
+
+
+
+
+<!-- 已选商品 -->
+<view class='selectedGoods fixed' wx:if="{{selectGoods.isShow}}">
+    <view class='bg fixed' bindtap='showCloseSelectGoods'></view>
+    <view class='content fixed'>
+         <view class='relative selectContent'>
+             <view class='title relative'>
+                   已选商品
+                   <view class='icon absolute nfar fa-trash' bindtap='emptySelectGoods'> 清空</view>
+             </view>
+             <view class='scrollContent' wx:if="{{selectGoods.goods.length!=0}}">
+                <!-- <view wx:for="{{res.sortList}}"
+                      wx:key="key"
+                      wx:for-index="index"
+                      wx:for-item="item" 
+                      wx:if="{{item.addListnum!=0}}"> -->
+                  <view class='li clearfix'
+                        wx:for="{{selectGoods.goods}}"
+                        wx:key="ikey"
+                        wx:for-index="gindex"
+                        wx:for-item="gitem">
+                        <view class='name l'>
+                              <view class='gitemname'>{{gitem.name}}</view>
+                              <view class='spaciMsg'>{{gitem.spaciMsg}}</view>
+                        </view>
+                        <view class='desc r flex' style='justify-content:flex-end;' bindtap='changChoosCart'>
+                            <view class='disinlineblock font600 maincolor money'>¥
+                                {{gitem.priceSpciNum}}
+                            </view>
+                            <view class='flex'>
+                            <view class=' icon flex' 
+                                  data-index='{{gitem.index}}'
+                                  data-gindex='{{gitem.gindex}}' 
+                                  data-spaciindex='{{gitem.spaciIndex}}'  
+                                  data-spacimsg='{{gitem.spaciMsg}}' 
+                                  data-spaciprice='{{gitem.spaciPrice}}'
+                                  bindtap='changeLessToCart'>
+                                  <image src='/images/goodsLess.png'></image>
+                                  </view>
+                            <view class='disinlineblock num t_center'>{{gitem.addnum}}</view>
+                            <view class=' icon flex ' 
+                                  data-index='{{gitem.index}}'
+                                  data-gindex='{{gitem.gindex}}' 
+                                  data-spaciindex='{{gitem.spaciIndex}}'  
+                                  data-spacimsg='{{gitem.spaciMsg}}' 
+                                  data-spaciprice='{{gitem.spaciPrice}}' 
+                                  bindtap='changeAddToCart'>
+                                  <image src='/images/goodsAdd.png'></image>
+                                  </view>
+                              </view>
+                        </view>
+                  </view>
+                   <!-- 包装费用 -->
+                  <view class='li clearfix' hidden='{{selectGoods.packageFee==0}}'>
+                        <view class='name l'>
+                              <view class='gitemname'>包装费用</view>
+                        </view>
+                        <view class='desc r maincolor' bindtap='changChoosCart'>
+                            ￥{{selectGoods.packageFee}}
+                        </view>
+                  </view>
+                  <!-- 配送费 -->
+                  <view class='li clearfix' hidden='{{res.shippingFee==0}}'>
+                        <view class='name l'>
+                              <view class='gitemname'>配送费</view>
+                        </view>
+                        <view class='desc r maincolor' bindtap='changChoosCart'>
+                            ￥{{res.shippingFee}}
+                        </view>
+                  </view>
+                <!-- </view> -->
+             </view>
+             <view class='t_center tip' wx:else>暂无商品,赶紧去选商品哦</view>
+             <view class='buttom'></view>
+         </view>
+    </view>
+</view>
+
+
+<!-- 免费餐开始时间 免费餐提示 -->
+<view wx:if="{{isShowFeeStart && isShowFixedButtom && res.free && menuCurrent == 0}}" class='isShowFeeStart nfar fixed t_center'>
+    <view class='relative'>
+        <text class=''>免费餐活动开始时间：{{res.freemeal.startTime}}</text>
+        <view class='fa-times-circle-o absolute' catchtap='closeShowFeeTip'></view>
+    </view>
+</view>
+
+<view class='fixedButtom fixed' wx:if="{{isShowFixedButtom && menuCurrent == 0}}">
+      <view class='goBuy relative'>
+           
+           <!-- 结算 -->
+           <view class='settle'>
+                 <!-- <view class='nead' wx:if="{{!shouHoursTime.isShopHours}}">本店打烊啦</view>
+                 <view wx:else> -->
+                   <view hidden='{{res.amount==0}}' bindtap='showCloseSelectGoods'>
+                        <view class='money font600'>¥{{res.amount}} 
+                        <!-- <text hidden='{{res.originalAmount==0}}'>¥{{res.originalAmount}}</text> -->
+                        </view>
+                        <view class='smoney' hidden='{{res.shippingFee==0}}'>另需配送费{{res.shippingFee}}元</view>
+                     </view>
+                 <!-- </view> -->
+           </view>
+           <!-- 去结算 -->
+           <view class='tosettle absolute t_center {{res.allAddCartNum==0?"notosettle":""}}'>
+              <!-- <view class='nead' wx:if="{{!shouHoursTime.isShopHours}}">本店打烊啦</view> -->
+              <view class='nead' wx:if="{{!shouHoursTime.isShopHours}}">去结算</view>
+              <view wx:else>
+                  <view class='tosettleBtn' wx:if="{{(res.minPrice - (res.amount?res.amount:0)) <=0 }}" bindtap="submitOrder">去结算</view>
+                  <view class='nead' wx:else>还差¥{{res.minPrice - (res.amount?res.amount:0)}}起送</view>
+              </view>
+           </view>
+           <!-- 打烊了 -->
+           <view class='closeStore absolute' wx:if="{{closeStore}}">本店打烊啦</view>
+           <!-- logo -->
+           <view class='logo absolute' bindtap='showCloseSelectGoods'>
+               <view class='relative'>
+                  <image src='{{res.allAddCartNum==0?"/images/default_logo.png":"/images/logo.png"}}'></image>
+                  <view class='num t_center absolute' hidden='{{res.allAddCartNum==0}}'>{{res.allAddCartNum}}</view>        
+               </view>   
+           </view>
+      </view>
+</view>
+
+<!-- 点击店铺logo 显示  -->
+
+<view wx:if="{{shopMsg}}" class='shopMsg fixed'>
+      <view class='content'>
+            <view class='store relative' bindtap="showOrCloseShopMsg">
+                  <view class='absolute bg' wx:if="{{res.logoUrl}}">
+                      <image src='{{filters.imageScale200(res.logoUrl)}}'></image>
+                  </view>
+                  <view class='absolute bg' wx:else>
+                      <image src='/images/default_logo.png'></image>
+                  </view>
+                  <view class='absolute bgshow'></view>
+                  <view class='logo absolute'>
+                      <block wx:if='{{res.logoUrl&&res.logoUrl!=""}}'>
+                      <!-- mode='aspectFit' -->
+                          <image src='{{filters.imageScale200(res.logoUrl)}}'></image>
+                      </block>
+                      <block wx:else>
+                         <image src='/images/default_logo.png' mode='aspectFit'></image>
+                      </block>
+                  </view>
+            </view>
+            <view class='storeName font600 t_center'>{{res.name}}</view>
+            <view class='titleContent'>
+                <view class='title font600'>配送</view>
+                <view class='description'>营业时间：{{res.openTime}}-{{res.closeTime}}</view>
+                <!-- <view class='description'>公告：{{res.description}}</view> -->
+            </view>
+            <view class='titleContent'>
+                <view class='title font600'>公告</view>
+                <view class='description' wx:if="{{res.description}}">
+                   <text>{{res.description}}</text>
+                </view>
+                <view class='description' wx:else>无</view>
+            </view>
+            <!-- <view class='titleContent'>
+                <view class='title font600'>免费餐</view>
+                <view class='description'>免费餐的标题：例如今个老板姓真呀真高兴</view>
+                <view class='description'>免费餐描述：机不可失时不再来</view>
+            </view> -->
+      </view>
+      <!--  -->
+      <view class='close'>
+           <view class='fa-angle-double-up nfar t_center'  bindtap="showOrCloseShopMsg"></view>
+      </view>
+</view>
+
+
+<!-- 获取屏幕高度宽度 为兼容获取屏幕宽度 -->
+<view class='fixed windowScreen' style='width:100%;height:100%;z-index:10001;background:pink;left:-1000%'></view>

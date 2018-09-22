@@ -1,0 +1,87 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/wasteRecovery/index",
+    "pages/free/index",
+    "pages/share/index",
+    "pages/freeVoucher/index",
+    "pages/error/index",
+    "pages/nearbyGourmet/index",
+    "pages/nearby/index",
+    "pages/mine/mine",
+    "pages/order/order",
+    "pages/phone/phone",
+    "pages/userInfo/userInfo",
+    "pages/about/about",
+    "pages/h5/h5",
+    "pages/suggest/suggest",
+    "pages/position/index",
+    "pages/history/index",
+    "pages/feeActivityHall/index",
+    "pages/shopSearch/index",
+    "pages/store/index",
+    "pages/address/address",
+    "pages/editAddress/editAddress",
+    "pages/map/map",
+    "pages/submitOrder/index",
+    "pages/payOrder/index",    
+    "pages/watergas/watergas",    
+    "pages/orderInfo/orderInfo",
+    "pages/comment/comment",
+    "pages/refund/refund",
+    "pages/winRecord/winRecord",
+    "pages/winDetail/winDetail",
+    "pages/password/password",
+    "pages/wallet/wallet",
+    "pages/walletList/walletList",
+    "pages/walletDetail/walletDetail",
+    "pages/topup/topup",
+    "pages/balanceResult/balanceResult",
+    "pages/transfer/transfer"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#ff6b67",
+    "navigationBarTextStyle": "while",
+    "navigationBarTitleText": "免啦",
+    "backgroundTextStyle": "dark",
+    "backgroundColor": "#F3F3F3"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "/images/index.png",
+        "selectedIconPath": "/images/index_select.png"
+      },
+      {
+        "pagePath": "pages/nearby/index",
+        "text": "附近",
+        "iconPath": "/images/position.png",
+        "selectedIconPath": "/images/position_select.png"
+      },
+      {
+        "pagePath": "pages/order/order",
+        "text": "订单",
+        "iconPath": "/images/order.png",
+        "selectedIconPath": "/images/order_select.png"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "我的",
+        "iconPath": "/images/mine.png",
+        "selectedIconPath": "/images/mine_select.png"
+      }
+    ],
+    "backgroundColor": "#ffffff",
+    "color": "#cccccc",
+    "selectedColor": "#ff6b67"
+  },
+  "networkTimeout": {
+    "request": 5000,
+    "connectSocket": 5000,
+    "uploadFile": 5000,
+    "downloadFile": 50000
+  },
+  "debug": true
+}

@@ -1,0 +1,144 @@
+/* 登录信息模块 */
+
+.login_model {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #333;
+  text-align: center;
+}
+
+.nologin_view {
+  height: 180rpx;
+  margin-top: 100rpx;
+}
+
+.nologin_login {
+  width: 300rpx;
+  height: 80rpx;
+  background-color: #ff6863;
+  color: #fff;
+  line-height: 80rpx;
+  font-size: 36rpx;
+}
+
+.login_top {
+  height: 360rpx;
+  background: #ff6b67;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login_head {
+  width: 200rpx;
+  height: 200rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+  border: 2rpx solid white;
+}
+
+.login_name {
+  color: #fff;
+  font-size: 30rpx;
+  font-weight: 500;
+  margin-bottom: 5%;
+}
+
+.login_bottom {
+  height: 240rpx;
+  background: #fff;
+  border-radius: 20rpx;
+  margin-top: -60rpx;
+  margin-left: 30rpx;
+  margin-right: 30rpx;
+  margin-bottom: 5rpx;
+  box-shadow: 0 0 20rpx gray;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.login_bottom_miandan {
+  width: 33%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.miandan_img {
+  width: 120rpx;
+  height: 120rpx;
+}
+
+.miandan_text {
+  margin-top: 20rpx;
+  color: #333;
+  font-size: 20rpx;
+}
+
+/* 分割线 */
+
+.split-model {
+  width: 100%;
+  height: 8px;
+  background: #f8f8f8;
+}
+
+/* 功能列表模块 */
+
+.function_view {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.function_logo {
+  margin-left: 32rpx;
+  margin-right: 22rpx;
+  height: 50rpx;
+  width: 50rpx;
+}
+
+.function_list {
+  height: 100rpx;
+  line-height: 100rpx;
+  font-size: 30rpx;
+  font-weight: 500;
+  color: #333;
+}
+
+.next_logo {
+  height: 25rpx;
+  width: 15rpx;
+  margin-left: 460rpx;
+}
+
+.order_tips {
+  font-size: 24rpx;
+  color: #999;
+  margin-left: 300rpx;
+}
+
+.next_logo_other {
+  height: 25rpx;
+  width: 15rpx;
+  margin-left: 40rpx;
+}
+
+.topup_button {
+  width: 120rpx;
+  height: 60rpx;
+  background-color: #ec304c;
+  color: #fff;
+  font-size: 24rpx;
+  line-height: 60rpx;
+  text-align: center;
+  border-radius: 30rpx;
+  margin-left: 300rpx;
+}
+
+.function-split {
+  height: 5rpx;
+  background: #f8f8f8;
+}

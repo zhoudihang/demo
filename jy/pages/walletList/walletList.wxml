@@ -1,0 +1,28 @@
+<view class='container'>
+
+  <block wx:if='{{walletList.length}}'>
+    <block wx:for="{{walletList}}" wx:key="key">
+      <navigator class='walletInfo_view' url='../walletDetail/walletDetail?recordId={{item.id}}'>
+        <view class='info_line1'>
+          <view class='line1_left'>{{item.type}}</view>
+          <view class='line1_right'>{{item.time}}</view>
+        </view>
+        <view class='info_line2'>
+          <view class='line2_left'>余额:{{item.moneyAfter}}</view>
+          <block wx:if="{{item.money>0}}">
+            <view class='line2_right' style='color:#ff6b67;'>{{item.money}}</view>
+          </block>
+          <block wx:else>
+            <view class='line2_right'>{{item.money}}</view>
+          </block>
+        </view>
+      </navigator>
+      <view class='split_line'></view>
+    </block>
+  </block>
+  <block>
+    <import src="/template/loading.wxml"/>
+    <template is="item" data='{{list:walletList,isloaded:isloaded,msg:"还没有收支明细数据"}}'/>
+  </block>
+
+</view>

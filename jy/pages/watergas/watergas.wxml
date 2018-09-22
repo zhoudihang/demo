@@ -1,0 +1,92 @@
+<block wx:if="{{defaultInfo==''}}">
+  <!-- 无绑定信息 -->
+  <view class='no_bind_view'>
+    <image class='no_bind_img' src='../../images/no_bind.png'></image>
+    <text class='no_bind_text'>暂无绑定信息</text>
+  </view>
+</block>
+<block wx:else>
+  <view class='bind_view'>
+    <!-- 水店信息 -->
+    <block wx:if="{{!defaultInfo.defaultWaterShop.name || !defaultInfo.defaultWaterProduct.name || !defaultInfo.defaultWaterAddress.address}}">
+      <view class='go_bind_view'>
+        <view class='add_icon_view' bindtap='bindWater'>
+          <image class='add_icon' src='/images/add.png'></image>
+        </view>
+        <text class='add_text'>绑定水店</text>
+      </view>
+    </block>
+    <block wx:else>
+      <view class='water_view'>
+        <view class='line_view'>
+          <view class='line_left'>商户</view>
+          <text class='line_right'>{{defaultInfo.defaultWaterShop.name}}</text>
+          <!-- <input type='text' class='line_right' value='{{defaultInfo.defaultWaterShop.name}}' /> -->
+        </view>
+        <!-- 分割线 -->
+        <view class="line-split"></view>
+        <view class='line_view'>
+          <view class='line_left'>商品</view>
+          <text class='line_right'>{{defaultInfo.defaultWaterProduct.name}}</text>
+          <!-- <input type='text' class='line_right' value='{{defaultInfo.defaultWaterProduct.name}}' /> -->
+        </view>
+        <!-- 分割线 -->
+        <view class="line-split"></view>
+        <view class='line_view'>
+          <view class='line_left'>地址</view>
+          <text class='line_right'>{{defaultInfo.defaultWaterAddress.address}}{{defaultInfo.defaultWaterAddress.address2}}</text>
+          
+          <!-- <input type='text' class='line_right' value='{{defaultInfo.defaultWaterAddress.address}}{{defaultInfo.defaultWaterAddress.address2}}' /> -->
+        </view>
+        <!-- 分割线 -->
+        <view class="line-split"></view>
+        <view class='line_view' bindtap='unbind' data-type='{{defaultInfo.defaultWaterShop.type}}'>
+          <image class='unbind_icon' src='/images/unbind.png'></image>
+          <text class='unbind_text'>解绑</text>
+        </view>
+      </view>
+    </block>
+
+    <!-- 气店信息 -->
+    <block wx:if="{{!defaultInfo.defaultCoalgasShop.name || !defaultInfo.defaultCoalgasProduct.name || !defaultInfo.defaultCoalgasAddress.address}}">
+      <view class='go_bind_view'>
+        <view class='add_icon_view' bindtap='bindGas'>
+          <image class='add_icon' src='/images/add.png'></image>
+        </view>
+        <text class='add_text'>绑定气店</text>
+      </view>
+    </block>
+    <block wx:else>
+      <view class='gas_view'>
+        <view class='line_view'>
+          <view class='line_left'>商户</view>
+          <text class='line_right'>{{defaultInfo.defaultCoalgasShop.name}}</text>
+          
+          <!-- <input type='text' class='line_right' value='{{defaultInfo.defaultCoalgasShop.name}}' /> -->
+        </view>
+        <!-- 分割线 -->
+        <view class="line-split"></view>
+        <view class='line_view'>
+          <view class='line_left'>商品</view>
+          <text class='line_right'>{{defaultInfo.defaultCoalgasProduct.name}}</text>
+          
+          <!-- <input type='text' class='line_right' value='{{defaultInfo.defaultCoalgasProduct.name}}' /> -->
+        </view>
+        <!-- 分割线 -->
+        <view class="line-split"></view>
+        <view class='line_view'>
+          <view class='line_left'>地址</view>
+          <text class='line_right'>{{defaultInfo.defaultCoalgasAddress.address}}{{defaultInfo.defaultWaterAddress.address2}}</text>
+          
+          <!-- <input type='text' class='line_right' value='{{defaultInfo.defaultCoalgasAddress.address}}{{defaultInfo.defaultWaterAddress.address2}}' /> -->
+        </view>
+        <!-- 分割线 -->
+        <view class="line-split"></view>
+        <view class='line_view' bindtap='unbind' data-type='{{defaultInfo.defaultCoalgasShop.type}}'>
+          <image class='unbind_icon' src='/images/unbind.png'></image>
+          <text class='unbind_text'>解绑</text>
+        </view>
+      </view>
+    </block>
+  </view>
+</block>

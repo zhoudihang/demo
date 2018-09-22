@@ -1,0 +1,96 @@
+<form bindsubmit="formSubmit">
+  <view class='container'>
+
+    <view class='top_line'></view>
+
+    <view class='each_item' style='height:200rpx;' bindtap='chooseImage'>
+      <input value='{{pictureIdList}}' hidden='true' name='headId'></input>
+      <view class='item_left'>
+        <text>头像</text>
+      </view>
+      <view class='item_middle'>
+        <block wx:if="{{imageList.length==0}}">
+          <image class='logo' src='{{userInfo.headUrl}}'></image>
+        </block>
+        <block wx:else>
+          <image class='logo' src='{{imageList[0]}}'></image>
+        </block>
+      </view>
+      <view class='item_right'>
+        <image class='icon' src='/images/next.png'></image>
+      </view>
+    </view>
+
+    <view class='split_line'></view>
+
+    <view class='each_item'>
+      <view class='item_left'>
+        <text>昵称</text>
+      </view>
+      <input class='nickname_input' type='text' value='{{userInfo.nickname}}' name="nickname" maxlength='60'></input>
+      <view class='item_right'>
+      </view>
+    </view>
+
+    <view class='split_line'></view>
+
+    <view class='each_item' bindtap='changeGender'>
+      <block wx:if="{{gender == '男'}}">
+        <input value='MALE' hidden='true' name='gender'></input>
+      </block>
+      <block wx:else>
+        <input value='FEMALE' hidden='true' name='gender'></input>
+      </block>
+      <view class='item_left'>
+        <text>性别</text>
+      </view>
+      <view class='item_middle'>
+        <block wx:if="{{gender==''}}">
+          <text>{{userInfo.gender}}</text>
+        </block>
+        <block wx:else>
+          <text>{{gender}}</text>
+        </block>
+      </view>
+      <view class='item_right'>
+        <image class='icon' src='/images/next.png'></image>
+      </view>
+    </view>
+
+    <view class='split_line'></view>
+
+    <navigator class='each_item' url='../phone/phone?type=change'>
+      <view class='item_left'>
+        <text>绑定手机号</text>
+      </view>
+      <view class='item_middle'>
+        <text>{{userInfo.mobile}}</text>
+      </view>
+      <view class='item_right'>
+        <image class='icon' src='/images/next.png'></image>
+      </view>
+    </navigator>
+
+    <view class='split_line'></view>
+
+    <navigator class='each_item' url='/pages/password/password?password=old&type=password&mobile={{userInfo.mobile}}'>
+      <view class='item_left'>
+        <text>支付密码</text>
+      </view>
+      <view class='item_middle'>
+        <text>修改</text>
+      </view>
+      <view class='item_right'>
+        <image class='icon' src='/images/next.png'></image>
+      </view>
+    </navigator>
+
+    <!-- 保存按钮 -->
+    <view class='button_view'>
+      <button formType="submit" class='button_save'>保存</button>
+      <button class='button_logout' bindtap='logout'>退出登录</button>
+    </view>
+
+  </view>
+
+</form>

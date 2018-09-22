@@ -1,0 +1,110 @@
+.container {
+  height: 100vh;
+  width: 100%;
+  background: #f8f8f8;
+}
+
+.top_split {
+  background: #f8f8f8;
+  height: 30rpx;
+}
+
+.balance_info_view {
+  background: white;
+  height: 370rpx;
+  margin-left: 40rpx;
+  margin-right: 40rpx;
+  margin-bottom: 50rpx;
+  border-bottom: 3rpx solid #eee;
+}
+
+.transfer_button {
+  color: #fff;
+  background: #ff6b67;
+  width: 90%;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 30rpx;
+  font-weight: 500;
+}
+
+.account_info {
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+}
+
+.info_tittle {
+  font-size: 34rpx;
+  margin: 0 40rpx;
+}
+
+.info_account {
+  font-size: 30rpx;
+  color: #003a8f;
+}
+
+.split_top {
+  height: 3rpx;
+  background: #eee;
+}
+
+.transfer_tittle {
+  font-size: 34rpx;
+  margin: 40rpx 40rpx;
+}
+
+.transfer_money {
+  margin-left: 40rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.unit_symbol {
+  font-size: 40rpx;
+  margin-right: 20rpx;
+}
+
+.money_input {
+  width: 500rpx;
+  font-size: 40rpx;
+}
+
+.split_bottom {
+  height: 3rpx;
+  background: #eee;
+  margin: 0 40rpx;
+  margin-top: 20rpx;
+}
+
+.all_balance {
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+}
+
+.all_money {
+  font-size: 30rpx;
+  color: #999;
+  margin: 0 40rpx;
+}
+
+.all_transfer {
+  font-size: 30rpx;
+  color: #003a8f;
+}
+
+.info_unbind {
+  background: white;
+  height: 50rpx;
+  line-height: 50rpx;
+  font-size: 28rpx;
+  color: #003a8f;
+  position: fixed;
+  left: 250rpx;
+}
+
+.info_unbind::after {
+  border: none;
+}

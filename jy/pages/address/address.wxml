@@ -1,0 +1,72 @@
+
+  <block wx:if='{{sourceRouter==="pages/submitOrder/index"}}'>
+      <block wx:if='{{addressListOnline.length!=0}}'>
+        <view class='addressLine fs14'><image src='/images/addressOnline.png'></image>在配送范围内</view>
+        <view wx:for="{{addressListOnline}}" wx:key="{{index}}">
+          <!-- 地址信息 -->
+          <view class='address_view'>
+            <view class='address_left' bindtap='chooseAddress' data-id='{{item.id}}'    data-addressJsonStr="{{item.addressJsonStr}}">
+              <view class='address_name fs16'>
+                <text>{{item.address}}{{item.address2}}</text>
+              </view>
+              <view class='address_contact fs14'>
+                <text>{{item.name}} {{item.gender==='MALE'?'先生':'女士'}} {{item.tel}}</text>
+              </view>
+            </view>
+            <navigator class='address_right' url='/pages/editAddress/editAddress?address={{item.addressJsonStr}}'>
+              <image class='edit_icon' src='/images/edit_address.png'></image>
+            </navigator>
+          </view>
+          <!-- 分割线 -->
+          <view class="address-split"></view>
+        </view>
+      </block>
+      <block wx:if='{{addressListUnline.length!=0}}'>
+        <view class='addressLine fs14 c999999'><image src='/images/addressUnline.png'></image>超出配送地址</view>
+        <view wx:for="{{addressListUnline}}" wx:key="{{index}}">
+          <!-- 地址信息 -->
+          <view class='address_view'>
+            <view class='address_left' bindtap='clickUnline'>
+              <view class='address_name fs16'>
+                <text class='c999999'>{{item.address}}{{item.address2}}</text>
+              </view>
+              <view class='address_contact fs14'>
+                <text>{{item.name}} {{item.gender==='MALE'?'先生':'女士'}} {{item.tel}}</text>
+              </view>
+            </view>
+            <navigator class='address_right' url='/pages/editAddress/editAddress?address={{item.addressJsonStr}}'>
+              <image class='edit_icon' src='/images/edit_address.png'></image>
+            </navigator>
+          </view>
+          <!-- 分割线 -->
+          <view class="address-split"></view>
+        </view>
+      </block>
+  </block>
+  <block wx:else>
+    <view wx:for="{{addressList}}" wx:key="{{index}}">
+      <!-- 地址信息 -->
+      <view class='address_view'>
+        <view class='address_left' bindtap='chooseAddress' data-id='{{item.id}}'    data-addressJsonStr="{{item.addressJsonStr}}">
+          <view class='address_name fs16'>
+            <text>{{item.address}}{{item.address2}}</text>
+          </view>
+          <view class='address_contact fs14'>
+            <text>{{item.name}} {{item.gender==='MALE'?'先生':'女士'}} {{item.tel}}</text>
+          </view>
+        </view>
+        <navigator class='address_right' url='/pages/editAddress/editAddress?address={{item.addressJsonStr}}'>
+          <image class='edit_icon' src='/images/edit_address.png'></image>
+        </navigator>
+      </view>
+      <!-- 分割线 -->
+      <view class="address-split"></view>
+    </view>
+  </block>
+  
+
+
+<button class='add_address' bindtap='addAddress'>
+  <view class='fa plus-circle' style='color:#ff6b67'></view>
+  <text class='address_text fs16'>添加收货地址</text>
+</button>

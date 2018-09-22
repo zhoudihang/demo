@@ -1,0 +1,23 @@
+<!--店铺搜索-->
+<!-- 搜索 -->
+<view class='search relative'>
+  <view class='searchContent'>
+    <view class='nfar searchInput relative'>
+      <input placeholder="输入店铺名称" bindconfirm="bindconfirm" bindinput='bindinputKeyWord' confirm-type="search" focus/>
+      <view class='icon fa-search absolute'></view>
+    </view>
+  </view>
+  <view class='searchButton t_center absolute' bindtap='submitSearch'>搜索</view>
+</view>
+<!-- 历史搜索 -->
+<view class='history'>
+  <view class='clearfix'>
+    <view class='l title'>历史搜索</view>
+    <view class='r nfar fa-trash-o' bindtap='removehistory'></view>
+  </view>
+  <view class='list clearfix' wx:if="{{history.length!=0}}">
+    <view class='l li' wx:for="{{history}}" wx:key="key" wx:for-index="inx" wx:for-item="item" data-keyword="{{item}}" bindtap='historyli'>
+      {{item}}
+    </view>
+  </view>
+</view>

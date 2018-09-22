@@ -1,0 +1,9 @@
+<web-view src="{{url}}" wx:if='{{url!=""}}'></web-view>
+<view wx:else>
+  <view class="error flex fixed">
+    <view class='errImg'>
+      <image src='../../images/no_order.png'></image>
+      <view class='msg t_center'>网页加载失败...</view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,54 @@
+<!--index.wxml-->
+<!-- 附近美食  -->
+<view class='recommend' wx:if="{{res.shopList}}">
+  <!-- 附近美食 list  -->
+  <view class='recommend_content' wx:if="{{res.shopList}}">
+    <block wx:for="{{res.shopList}}" wx:key="key" wx:for-index="idx" wx:for-item="item">
+      <view class='li clearfix' bindtap='navigateTo' data-uri="../store/index?id={{item.id}}">
+        <view class='l goods_logo'>
+          <view class='relative'>
+            <image src='{{item.logoUrl}}@scale400' class='goods_img'></image>
+            <image src='../../images/mianfei.png' class='mianfei absolute' wx:if="{{item.free}}"></image>
+          </view>
+        </view>
+        <view class='goods_content'>
+          <view class='title relative'>
+            <text class='goods_name disblock line_overhide'>{{item.name}}</text>
+            <text class='distance absolute' decode='true'>{{item.distince}}km</text>
+          </view>
+          <view class='star_num clearfix'>
+            <view class='star l clearfix'>
+              <view class='l nfar' wx:for="{{star}}" wx:key="starkey" wx:for-index="staridx" wx:for-item="staritem">
+                <view class='star_full' wx:if="{{staritem > item.last30DaysAvg && item.last30DaysAvg !=0}}"></view>
+                <view class='star_o' wx:else></view>
+              </view>
+            </view>
+            <text class='starnum l disblock'>{{item.last30DaysAvg}}</text>
+            <text class='ordernum l disblock'>订单量{{item.orderCount}}</text>
+          </view>
+          <view class='song'>起送 ¥{{item.minPrice}}｜配送 ¥{{item.shippingFee}}</view>
+          <!-- <view class='clearfix usemoney'>
+                         <view class='l everyone'>
+                             人均消费 ¥{{item.avgCost}}
+                         </view>
+                         <view class='r'>
+                             <text class='free disinlneblock' wx:if="{{item.free}}">免费</text>
+                         </view>
+                   </view> -->
+          <view class='label'>
+            <text class='free disinlneblock' wx:if="{{item.free}}">免费</text>
+            <text class='waimai disinlneblock'>外卖</text>
+            <text class='free disinlneblock freetime' wx:if="{{item.free}}">免费餐开始时间：{{item.freemeal.time}}</text>
+          </view>
+        </view>
+      </view>
+    </block>
+    <!-- <view class='t_center loading '>
+      <text wx:if="{{res.shopList.length ==0 && isloaded}}">暂无数据</text>
+      <text wx:elif="{{res.shopList.length !=0 &&isloaded}}">加载完成</text>
+      <text wx:else><text class='nfar faspin fa-spinner flex'></text>正在加载中...</text>
+    </view> -->
+    <import src="/template/loading.wxml"/>
+    <template is="item" data='{{list:res.shopList,isloaded:isloaded,msg:"附近暂无免费餐"}}'/>
+  </view>
+</view>

@@ -1,0 +1,181 @@
+<wxs src="../../wxs/filters.wxs" module="filters" />
+
+
+<view class='feeContent relative'>
+  <view class='bg'>
+    <image src='../../images/fee/fee000.jpg ' mode='aspectFill'></image>
+  </view>
+  <!-- 倒计时 或者 中奖弹窗 -->
+  <view hidden='{{countDown||winPopup}}'>
+    <view class='content hall' hidden="{{!hallOrDraw}}">
+      <!-- 店铺名字 -->
+      <view class='storename absolute'>
+        <image src='../../images/fee/fee001.png'></image>
+      </view>
+      <view class='storename absolute'>
+        <text class='disblock line_overhide font600 t_center' style='font-size:{{filters.fontSize(storename,563,51,26,"rpx")}};'>{{storename}}</text>
+      </view>
+      <!-- ***头像 -->
+      <view class='userInfo absolute' bindtap='changeHallOrDraw'>
+        <view class='logo'>
+          <image src='{{res.user.headUrl?res.user.headUrl:"/images/default_head.png"}}'></image>
+        </view>
+        <view class='info' wx:if="{{res.user}}">
+          <view>{{res.user.nickname}}进入</view>
+          <view>免费餐活动房间</view>
+        </view>
+      </view>
+      <!-- 倒计时 -->
+      <view class='timeout absolute'>
+        <view class='tiemoutContent relative'>
+          <view class='timeoutbg'>
+            <image src='../../images/fee/fee002.png'></image>
+          </view>
+          <view class='start absolute t_center'>
+            <view>活动</view>
+            <view>开始</view>
+            <view>倒计时</view>
+          </view>
+          <view class='icon absolute'>
+            <image src='../../images/fee/fee003.png'></image>
+          </view>
+          <view class='time absolute font600'>{{freeCountDownNun}}</view>
+        </view>
+      </view>
+    </view>
+    <view class='content onlineList absolute' hidden="{{hallOrDraw}}">
+       <icon class='fa-close absolute' 
+                  bindtap='changeHallOrDraw'
+                  type="cancel" 
+                  size="25" 
+                  color="rgba(153,153,153,1)"/>
+      <view class='listContent relative'>
+        <view class='bg'>
+          <image src='../../images/fee/fee004.png'></image>
+        </view>
+        <view class='tap absolute t_center' wx:if="{{res.onlineUserList}}">
+          <view class='{{onlineOrWinning=="online"?"active":""}}' bindtap='changeOnlineOrWinning' data-onlineOrWinning='online'>在线人数
+            <text>{{res.onlineUserList.length}}/99</text>
+          </view>
+          <view class='{{onlineOrWinning=="winning"?"active":""}}' bindtap='changeOnlineOrWinning' data-onlineOrWinning='winning'>中奖记录</view>
+        </view>
+        <!-- 在线名单 -->
+        <view class='onlinename absolute'>
+          <view class='onlinenameList relative'>
+            <!-- 左右箭头 -->
+            <view class='arrows flex absolute' hidden='{{!isWinShowAni}}'>
+              <view class='leftArrows'>
+                <image src='../../images/fee/fee005.png' class='image100'></image>
+              </view>
+              <view class='rightArrows'>
+                <image src='../../images/fee/fee005.png' class='image100'></image>
+              </view>
+            </view>
+            <view class='storename line_overhide font600 t_center'>{{storename}}</view>
+            <!-- 在线人数执行动画 -->
+            <view class='list overflow' hidden='{{!isWinShowAni}}' id='onlineUserList'>
+              <!--  id='onlineUserList' -->
+              <view class=' transition' animation="{{animationData}}">
+                <view class='li relative clearfix' wx:for="{{onlineUserList}}" wx:key="key">
+                  <view class='l lilogo'>
+                    <image src='{{item.headUrl&&item.headUrl!=""?item.headUrl:"../../images/default_head.png"}}'></image>
+                  </view>
+                  <view class='usernamelucky'>
+                    <view class='name font600 line_overhide'>{{item.nickname}}</view>
+                    <view class='lcukynum'>
+                      <image src='../../images/fee/zs.png'></image>
+                      {{item.luckyPoint}}%
+                    </view>
+                    <text class='distance fs12'>{{filters.distance(item.distance)}}</text>
+                  </view>
+                  <view class='num absolute font600 t_center'>{{item.index}}</view>
+                </view>
+              </view>
+            </view>
+            <!-- 中奖记录 -->
+            <!-- 在线人数 -->
+            <scroll-view class='list transition' scroll-y="true" hidden='{{isWinShowAni}}'>
+              <!-- 在线人数 -->
+              <view hidden='{{onlineOrWinning!="online"}}'>
+                <view class='li relative clearfix' wx:for="{{res.onlineUserList}}" wx:key="key">
+                  <view class='l lilogo'>
+                    <image src='{{item.headUrl&&item.headUrl!=""?item.headUrl:"/images/default_head.png"}}'></image>
+                  </view>
+                  <view class='usernamelucky'>
+                    <view class='name font600 line_overhide'>{{item.nickname}}</view>
+                    <view class='lcukynum'>
+                      <image src='../../images/fee/zs.png'></image>
+                      {{item.luckyPoint}}%
+                    </view>
+                    <text class='distance fs12'>{{filters.distance(item.distance)}}</text>
+                  </view>
+                  <view class='num absolute font600 t_center'>{{item.index}}</view>
+                </view>
+              </view>
+              <!-- 中奖记录 -->
+              <view hidden='{{onlineOrWinning!="winning"}}'>
+                <view class='li relative clearfix' wx:for="{{res.winnerList}}" wx:key="key">
+                  <view class='l lilogo'>
+                    <image src='{{item.user.headUrl&&item.user.headUrl!=""?item.user.headUrl:"../../images/default_head.png"}}'></image>
+                  </view>
+                  <view class='usernamelucky'>
+                    <view class='name font600 line_overhide'>{{item.user.nickname}}</view>
+                    <view class='lcukynum'>
+                      <image src='../../images/fee/zs.png'></image>
+                      {{item.user.luckyValue}}%
+                    </view>
+                    <!-- <text class='distance fs12'>{{filters.distance(item.user.distance)}}</text>     -->                
+                  </view>
+                  <view class='freemealProduct line_overhide absolute font600 t_center'>{{item.freemealProduct.name}}</view>
+                </view>
+              </view>
+            </scroll-view>
+          </view>
+        </view>
+        <!-- 我的信息 -->
+        <view class='myInfo absolute'>
+          <view class='myInfoContent' wx:if="{{res.user}}" bindtap='changeHallOrDraw'>
+            <view class='namelucky t_center'>
+              <view class='name'>{{res.user.nickname}}</view>
+              <view class='lucky'>幸运值：{{res.user.luckyValue}}%</view>
+            </view>
+            <view class='logo'>
+              <image src='{{res.user.headUrl&&res.user.headUrl!=""?res.user.headUrl:"../../images/default_head.png"}}'></image>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <!--  -->
+  </view>
+  <!-- 倒计时开始 -->
+  <view class='popup fixed flex' wx:if="{{countDown}}">
+    <image src='../../images/daojishi/{{countDownNun}}.png' class='countDownNun'></image>
+  </view>
+  <!-- 中奖弹框 -->
+  <view class='popup fixed flex' wx:if="{{winPopup}}" bindtap='closeWinnerPopup'>
+    <view class='content relative'>
+      <image src='../../images/fee/winProductBg.png' class='bgImg'></image>
+      <view class='winInfo t_center absolute'>
+        <view class='title font600'>恭喜你</view>
+        <view class='usernametel'>
+          (
+          <text>用户名：{{winPopupData.user.nickname}}</text>,
+          <text>手机号：{{winPopupData.user.mobile}}</text>
+          )
+        </view>
+        <view class='relative winProduct'>
+          <image src='../../images/fee/winProduct.png' class='bgImg'></image>
+          <view class='absolute goodsInfo'>
+            <image src='{{winPopupData.freemealProduct.pictureUrl}}'></image>
+            <view class='goodsname line_overhide t_center font600'>{{winPopupData.freemealProduct.name}}</view>
+          </view>
+          <view class='absolute otherStore' catchtap='navigateTo' data-uri="/pages/nearbyGourmet/index">逛逛别家</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+</view>
+
+<!-- ---------------- -->

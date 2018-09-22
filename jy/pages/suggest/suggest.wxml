@@ -1,0 +1,38 @@
+<form bindsubmit="formSubmit">
+
+  <!-- 内容 -->
+  <view class='suggest_content'>
+    <textarea class='suggest_content_text' placeholder='请输入遇到的问题或意见' name='content' maxlength='200'></textarea>
+  </view>
+
+  <!-- 图片 -->
+  <view class='photo_view'>
+    <block wx:for="{{imageList}}" wx:for-item="item" wx:for-index="idx" wx:key="key">
+      <view class='choose_photo_view'>
+        <image class='choose_photo' src='{{item}}' bindtap='checkImage' data-id='{{idx}}'></image>
+        <image src="/images/delete.png" class='deleteImg' bindtap='deleteImage' data-id='{{idx}}' />
+      </view>
+    </block>
+    <block wx:if="{{imageList.length < 3}}">
+      <view class='each_photo_view' bindtap='chooseImage'>
+        <image class='add_photo_icon' src='/images/add.png'></image>
+      </view>
+    </block>
+    <input value='{{pictureIdList}}' hidden='true' name='pictureIdList'></input>
+  </view>
+
+  <!-- 分割线  -->
+  <view class="suggest_split"></view>
+
+  <!-- 电话 -->
+  <view class='suggest_tel'>
+    <text class='suggest_tel_title'>联系电话</text>
+    <input type='text' class='suggest_tel_text' placeholder='选填、便于回访' name='tel' />
+  </view>
+
+  <!-- 提交按钮 -->
+  <view class='suggest_button'>
+    <button formType="submit" class='suggest_button_save'>提交</button>
+  </view>
+
+</form>

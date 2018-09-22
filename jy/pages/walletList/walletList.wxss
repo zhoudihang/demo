@@ -1,0 +1,56 @@
+.container {
+  background: #f8f8f8;
+  height: 100vh;
+  width: 100%;
+}
+
+.walletInfo_view {
+  background: white;
+  height: 150rpx;
+}
+
+.info_line1 {
+  height: 49%;
+  display: flex;
+  flex-direction: row;
+  margin-left: 30rpx;
+  padding-top: 30rpx;
+}
+
+.line1_left {
+  color: #333;
+  font-size: 28rpx;
+  font-weight: 500;
+  width: 64%;
+}
+
+.line1_right {
+  color: #999;
+  font-size: 24rpx;
+}
+
+.info_line2 {
+  height: 49%;
+  display: flex;
+  flex-direction: row;
+  margin-left: 30rpx;
+}
+
+.line2_left {
+  width: 50%;
+  font-size: 24rpx;
+  color: #333;
+}
+
+.line2_right {
+  width: 45%;
+  color: #333;
+  font-size: 28rpx;
+  font-weight: 500;
+  text-align: right;
+}
+
+.split_line {
+  height: 3rpx;
+  background: #f8f8f8;
+}

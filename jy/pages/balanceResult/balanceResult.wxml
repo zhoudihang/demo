@@ -1,0 +1,41 @@
+<view class='container'>
+
+  <view class='topup_status_view'>
+    <image class='topup_icon' src='/images/success.png'></image>
+    <block wx:if="{{type == 'topup'}}">
+      <text class='topup_title fs18 fw600'>充值成功</text>
+      <text class='topup_money fs15'>充值金额¥{{money}}</text>
+    </block>
+    <block wx:else>
+      <text class='topup_title fs18 fw600'>提现申请已提交</text>
+      <text class='topup_money fs15'>两小时内到账</text>
+    </block>
+  </view>
+
+  <block wx:if="{{type == 'transfer'}}">
+    <view class='transfer_info'>
+      <view class='transfer_account'>
+        <view class='info_left fs15'>提现账号：</view>
+        <view class='info_right fs15'>微信号({{account}})</view>
+      </view>
+      <view class='transfer_money'>
+        <view class='info_left fs15'>提现金额：</view>
+        <view class='info_right fs15'>¥{{money}}</view>
+      </view>
+      <view class='transfer_rate'>
+        <view class='info_left fs15'>手续费：</view>
+        <view class='info_right fs15'>¥{{charge}}</view>
+      </view>
+    </view>
+  </block>
+
+  <block wx:if="{{type == 'topup'}}">
+    <button class='button1 fs15' bindtap='gotoWalletList'>充值记录</button>
+    <button class='button2 fs15' bindtap='gotoIndex'>返回首页</button>
+  </block>
+  <block wx:else>
+    <button class='button3 fs15' bindtap='gotoIndex'>完成</button>
+  </block>
+
+
+</view>

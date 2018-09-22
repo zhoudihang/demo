@@ -1,0 +1,9 @@
+<view class="map_container" style='bottom:{{isHasData?80:0}}px'>
+  <map class="map" id="map" longitude="{{longitude}}" latitude="{{latitude}}" show-location="true" markers="{{markers}}" scale='20' bindmarkertap="makertap"></map>
+</view>
+<view class="map_text" wx:if="{{isHasData}}">
+  <text class="h1" bindtap='mapTelTo'>{{textData.name}}</text>
+  <text bindtap='mapMoveTo'>{{textData.address}} {{textData.address2}}</text>
+  <icon class='nfar fa-phone' bindtap='mapTelTo'></icon>
+  <icon class='nfar fa-angle-right' bindtap='mapMoveTo'></icon>
+</view>

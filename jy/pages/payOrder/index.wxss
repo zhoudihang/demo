@@ -1,0 +1,144 @@
+page {
+  background: rgba(240, 240, 240, 1);
+}
+
+.payMoney {
+  padding: 60rpx 0;
+  background: #fff;
+}
+
+.payMoney .moneyIcon {
+  font-size: 32rpx;
+  color: rgba(255, 118, 114, 1);
+}
+
+.payMoney .money {
+  font-size: 60rpx;
+  color: rgba(255, 118, 114, 1);
+}
+
+.payli {
+  margin-top: 16rpx;
+}
+
+.payli .li:first-child {
+  border: 0;
+}
+
+.payli .li .r {
+  font-size: 40rpx;
+}
+
+.payli .li .r .fa-check-circle {
+  color: rgba(151, 151, 151, 1);
+}
+
+.payli .li .r .fa-check-circle {
+  color: rgba(255, 118, 114, 1);
+}
+
+.payli .li {
+  border-top: 2rpx solid rgba(51, 51, 51, 0.2);
+  padding: 32rpx;
+  font-size: 32rpx;
+  color: rgba(51, 51, 51, 1);
+  line-height: 44rpx;
+  background: #fff;
+}
+
+.payli .li image {
+  margin-right: 16rpx;
+  width: 44rpx;
+  height: 40rpx;
+}
+
+.paybtn {
+  height: 100rpx;
+}
+
+.paybtn view {
+  width: 100%;
+  height: 100rpx;
+  line-height: 100rpx;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
+  background: rgba(255, 118, 114, 1);
+  font-size: 32rpx;
+  color: rgba(255, 255, 255, 1);
+}
+
+.inputPassword, .inputPassword .bg {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1001;
+  /*  */
+}
+
+.inputPassword .bg {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.inputPassword .content {
+  background: #fff;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  z-index: 1001;
+}
+
+.inputPassword .content .title {
+  height: 88rpx;
+  line-height: 88rpx;
+  color: rgba(51, 51, 51, 1);
+  font-size: 28rpx;
+  /* box-shadow: 1rpx 1rpx 1px #cccccc; *//* border-bottom: 1rpx solid #cccccc; */
+}
+
+.inputPassword .content .ul {
+  display: flex;
+  display: -webkit-flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50rpx;
+  padding-bottom: 32rpx;
+}
+
+.inputPassword .content .li {
+  width: 80rpx;
+  height: 80rpx;
+  display: flex;
+  display: -webkit-flex;
+  justify-content: center;
+  align-items: center;
+  border: 2rpx solid #ccc;
+  border-right: 0;
+}
+
+.inputPassword .content .li:last-child {
+  border-right: 2rpx solid #ccc;
+}
+
+.inputPassword .content .li .icon {
+  width: 20rpx;
+  height: 20rpx;
+  background: #ccc;
+  border-radius: 50%;
+}
+
+.inputPassword .content .fa-close {
+  color: #ccc;
+  font-size: 30rpx;
+  left: 0rpx;
+  top: 0rpx;
+  width: 88rpx;
+  height: 88rpx;
+}
+
+.inputPassword .content input[type="number"] {
+  height: 0;
+  width: 0;
+}

@@ -1,0 +1,15 @@
+<template name="item">
+  <view class='t_center loading'>
+    <view class='nodata flex' style='height:calc( 100vh - 100px );' wx:if="{{list.length ==0 && isloaded}}">
+        <view class='flex flexCenter' style='flex-wrap:wrap;'>
+          <image src='/images/no_order.png'></image>
+          <text class='f14 disblock w100'>{{msg?msg:'暂无商家,我们正在努力~'}}</text>
+        </view>
+    </view>
+    <text wx:elif="{{list.length !=0 &&isloaded}}">已经到底了</text>
+    <text wx:else>
+        <text class='nfar faspin fa-spinner disinlineblock mr10'></text>
+        <text>正在加载中...</text>
+    </text>
+  </view>
+</template>

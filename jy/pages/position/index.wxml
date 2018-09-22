@@ -1,0 +1,96 @@
+<!--pages/position/index.wxml-->
+<wxs src="../../wxs/filters.wxs" module="filters" />
+<view class='page' wx:if="{{isShow}}">
+
+  <!-- 搜索 -->
+  <!-- inputSearch -->
+  <view class='search transform fixed flex {{inputSearch || isShowSearchCityList?"inputSearch":""}}'>
+    <view class='iconSearch t_center flex' bindtap='inputSearchFalse'>
+      <icon type='search' size='13'></icon>
+      <text>请输入城市名</text>
+      <view class='inputSearchContent'>
+        <input type='text' placeholder='请输入城市名' focus="{{inputSearch}}" bindblur='inputSearchBlur' bindinput='inputSearchKeyWord'></input>
+      </view>
+    </view>
+  </view>
+  <view class='searchHeight'></view>
+
+  <view class='positionContent'>
+    <!-- 是否是搜索 -->
+    <view hidden='{{isShowSearchCityList}}'>
+      <view class='locationPosition cityIndex'>
+        <view class='header flex' bindtap='showOrHideCityLocation'>
+          <view class='font600'>当前：{{locationname!==''?locationname:cityName}}</view>
+          <view class='change'>切换区县</view>
+        </view>
+        <view class='content' wx:if="{{isShowAllDisCounty}}">
+          <view class='cityList' wx:if="{{districtCounty.length}}">
+            <view class='dl'>
+              <view class="ul clearfix t_center">
+                <view class='li l line_overhide' wx:for="{{districtCounty}}" wx:key="key" data-city='{{filters.JSONstringify(item)}}' bindtap='chooseCity'>{{index==0?'全城':item.name}}</view>
+              </view>
+            </view>
+          </view>
+          <view class='noCity t_center' wx:else>暂无区县</view>
+        </view>
+      </view>
+      <!-- 当前定位 -->
+      <view>
+        <view class='cityList'>
+          <view class='dl cityIndex'>
+            <view class='dt'>定位/当前定位</view>
+            <view class="ul clearfix t_center">
+              <view class='li l line_overhide' bindtap='locationCity' data-adcode="{{locationAdcode}}">
+                <text class='nfar fa-map-marker'></text>{{locationCityName}}</view>
+            </view>
+          </view>
+          <view class='dl cityIndex' wx:if="{{res.hotList}}">
+            <view class='dt '>热门城市</view>
+            <view class="ul clearfix t_center">
+              <view class='li l line_overhide' wx:for="{{res.hotList}}" wx:key="key" data-city='{{filters.JSONstringify(item)}}' bindtap='chooseCity'>{{item.name}}</view>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <!-- 城市列表 -->
+      <view wx:if="{{res.cityGroup}}">
+        <view class='cityList'>
+          <view class='dl cityIndex' wx:for="{{res.cityGroup}}" wx:key="key" wx:for-index="index" wx:for-item="item">
+            <view class='dt '>{{index}}</view>
+            <view class='dd' wx:for="{{item}}" wx:key="gkey" wx:for-index="gindex" wx:for-item="gitem" data-city='{{filters.JSONstringify(gitem)}}' bindtap='chooseCity'>{{gitem.name}}</view>
+          </view>
+        </view>
+      </view>
+
+    </view>
+    <!-- 搜索结果 -->
+    <view class='searchResult' hidden="{{!isShowSearchCityList}}">
+      <view class='cityList'>
+        <view class='dl' wx:for="{{searchCityList}}" wx:key="key" wx:for-index="index" wx:for-item="item">
+          <view class='dt cityIndex'>{{index}}</view>
+          <view class='dd' wx:for="{{item}}" wx:key="gkey" wx:for-index="gindex" wx:for-item="gitem" data-city='{{filters.JSONstringify(gitem)}}' bindtap='chooseCity'>{{gitem.name}}</view>
+        </view>
+      </view>
+    </view>
+    <!-- 没有该城市 -->
+    <view class='noCity t_center' hidden="{{isShowSearchCityList}}">
+      请换个城市名搜搜 ~
+    </view>
+
+  </view>
+
+  <!-- 城市字母 -->
+  <view class='PinyinPosition flex fixed t_center' wx:if="{{mune}}">
+    <view class='ul'>
+      <view class="li flex" wx:for="{{mune}}" wx:key="key" wx:for-index="index" wx:for-item="item" style='height:calc( {{100/mune.length+"%"}} );' data-index='{{index}}' bindtap='chooseMune'>
+        <text>{{item.value}}</text>
+      </view>
+    </view>
+  </view>
+  <!-- 点中字母显示图标 -->
+
+
+
+
+</view>

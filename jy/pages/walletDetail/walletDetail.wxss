@@ -1,0 +1,29 @@
+.container {
+  background: #f8f8f8;
+  height: 100vh;
+  width: 100%;
+}
+
+.item_background {
+  background: white;
+  padding-bottom: 10rpx;
+}
+
+.each_item {
+  margin: 20rpx 30rpx;
+  display: flex;
+  align-items: center;
+}
+
+.item_left {
+  width: 20%;
+  font-size: 30rpx;
+  color: #999;
+}
+
+.item_right {
+  width: 80%;
+  font-size: 30rpx;
+  color: #333;
+  text-align: right;
+}

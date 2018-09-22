@@ -1,0 +1,40 @@
+<wxs src="../../wxs/filters.wxs" module="filters" />
+<view class='payOrder'>
+  <view class='payMoney t_center'>
+    <text class='moneyIcon'>￥</text>
+    <text class='money'>{{filters.toFixed2(price)}}</text>
+    <view class='fs14 c999999' style='margin-top:10rpx;'>{{storename}}</view>
+  </view>
+  <view class='payli' wx:for="{{payList}}" wx:key="key">
+    <view class='li clearfix' data-type='{{item.payType}}' bindtap='choosePayType'>
+      <view class='l'>
+        <image src="../../images/payorder/{{item.payType}}.png"></image>
+        {{item.name}}
+      </view>
+      <view class='r'>
+        <view class='nfar {{payType==item.payType? "fa-check-circle": "fa-circle-o" }}'></view>
+      </view>
+    </view>
+  </view>
+
+  <view class='paybtn t_center'>
+    <view bindtap='submitOrder'>确定支付</view>
+  </view>
+</view>
+<!-- 支付输入密码 -->
+<view class='inputPassword fixed' wx:if="{{passwordIsShow}}">
+  <view class='fixed bg' bindtap='closePassword'></view>
+  <view class='content fixed'>
+    <view class='title relative t_center font600'>
+      请输入密码
+      <view class='nfar fa-close absolute' bindtap='closePassword'></view>
+    </view>
+    <view class='ul clearfix' bindtap='getFocus'>
+      <view class='li l' wx:for="{{6}}" wx:key="key">
+        <!-- {{payPassword.length }}-{{item}} -->
+        <view class='icon' hidden='{{payPassword.length < item + 1}}'></view>
+      </view>
+    </view>
+    <input type='number' cursor-spacing='0' maxlength="6" focus="{{focus}}" placeholder='100' confirm-hold="true" bindblur="inputblur" bindinput="pushPassword"></input>
+  </view>
+</view>

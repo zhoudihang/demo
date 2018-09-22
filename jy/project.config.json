@@ -1,0 +1,111 @@
+{
+	"description": "项目配置文件。",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.2.2",
+	"appid": "wx9435a007bb73f207",
+	"projectname": "jianyi%20app",
+	"svr": "/",
+	"client": "/",
+	"qcloudRoot": "/",
+	"miniprogramRoot": "/",
+	"pluginRoot": "/",
+	"scripts": {},
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"list": []
+		},
+		"miniprogram": {
+			"current": 4,
+			"list": [
+				{
+					"id": 0,
+					"name": "店铺首页   id=10939 id=12195 10904",
+					"pathName": "pages/store/index",
+					"query": "id=12311"
+				},
+				{
+					"id": 2,
+					"name": "首页 ",
+					"pathName": "pages/index/index",
+					"query": "id=11012 "
+				},
+				{
+					"id": 2,
+					"name": "提交订单",
+					"pathName": "pages/submitOrder/index",
+					"query": "orderType=BOOK"
+				},
+				{
+					"id": 6,
+					"name": "支付订单",
+					"pathName": "pages/payOrder/index",
+					"query": "fee=21.82&id=53192"
+				},
+				{
+					"id": 4,
+					"name": "修改资料",
+					"pathName": "pages/userInfo/userInfo",
+					"query": ""
+				},
+				{
+					"id": 5,
+					"name": "免费餐大厅",
+					"pathName": "pages/feeActivityHall/index",
+					"query": "roomId=28578&storename=珠海"
+				},
+				{
+					"id": 6,
+					"name": "店铺搜索",
+					"pathName": "pages/shopSearch/index",
+					"query": "type=FOOD&keywords=s"
+				},
+				{
+					"id": 7,
+					"name": "定位 adcode=440100&location=23.12911,113.264385&cityName=广州",
+					"pathName": "pages/position/index",
+					"query": "adcode=110000&location=23.12911,113.264385&cityName=上海市"
+				},
+				{
+					"id": 8,
+					"name": "我的免单 中奖详情",
+					"pathName": "pages/winDetail/winDetail",
+					"query": "freemealId=30580"
+				},
+				{
+					"id": -1,
+					"name": "免费券",
+					"pathName": "pages/free/index",
+					"query": ""
+				},
+				{
+					"id": 10,
+					"name": "收货地址",
+					"pathName": "pages/address/address",
+					"query": "shopId=10816&source=pages/submitOrder/index"
+				}
+			]
+		}
+	}
+}

@@ -1,0 +1,248 @@
+<!-- 订单状态 -->
+<view class='order_module1'>
+  <view class='module_top'></view>
+  <!-- 分割线 -->
+  <view class='module1_module2_split'></view>
+  <view class='module_bottom'>
+    <view class='bottom_line1' data-shopid='{{order.shop.id}}' bindtap='gotoShop'>
+      <view class='line1_left'>
+        <block wx:if="{{order.orderStatus=='NEW'}}">
+          <text class='left_text1'>待接单</text>
+        </block>
+        <block wx:elif="{{order.orderStatus=='RECEIVE'}}">
+          <text class='left_text1'>待发货</text>
+        </block>
+        <block wx:elif="{{order.orderStatus=='SHIPPING'}}">
+          <text class='left_text1'>待收货</text>
+        </block>
+        <block wx:elif="{{order.orderStatus=='FINISH'||order.orderStatus=='CHECKOUT'}}">
+          <text class='left_text1'>已完成</text>
+        </block>
+        <block wx:elif="{{order.orderStatus=='CANCELED'}}">
+          <text class='left_text1'>已取消</text>
+        </block>
+        <text class='left_text2 fs12'>感谢您的支持，欢迎再次光临</text>
+      </view>
+      <view class='line1_right'>
+        <image class='next_icon' src='/images/next.png'></image>
+      </view>
+    </view>
+    <view class='bottom_line2'>
+      <view class='line2_left'></view>
+      <view class='line2_center'></view>
+      <view class='line2_right'></view>
+    </view>
+    <view class='bottom_line3' data-shopid='{{order.shop.id}}' bindtap='gotoShop'>
+      <text class='line3_text'>再来一单</text>
+    </view>
+  </view>
+</view>
+
+<!-- 订单详情 -->
+<view class='order_module2'>
+  <view class='shop_info_view' data-shopid='{{order.shop.id}}' bindtap='gotoShop'>
+    <view class='shop_icon_view'>
+      <image class='shop_icon' src='{{order.shop.logoUrl}}'></image>
+    </view>
+    <view class='shop_name_view'>
+      <text class='shop_name'>{{order.shop.name}}</text>
+    </view>
+  </view>
+  <block wx:for="{{goodsList_show}}" wx:key="key">
+    <view class='order_item_view'>
+      <view class='order_goods_img_view'>
+        <image class='order_goods_img' src='{{item.product.pictureUrl}}@scale200'></image>
+      </view>
+      <view class='order_goods_info_view'>
+        <view class='order_goods_name'>
+          <text>{{item.product.name}}</text>
+        </view>
+        <view class='order_goods_spec'>
+          <text wx:if="{{item.specV1List.length!=0}}">(</text>
+          <block wx:for="{{item.specV1List}}" wx:for-index="idx" wx:key="key" wx:for-item="spec">
+            <text>{{spec.itemList[0].label}}</text>
+            <text wx:if="{{item.specV1List.length-1!=idx}}">+</text>
+          </block>
+          <text wx:if="{{item.specV1List.length!=0}}">)</text>
+        </view>
+        <view class='order_goods_number'>
+          <text>x{{item.number}}</text>
+        </view>
+      </view>
+      <view class='order_goods_price_view'>
+        <text>¥{{item.price}}</text>
+      </view>
+    </view>
+    <view class='order_goods_split'></view>
+  </block>
+  <block wx:for="{{goodsList_hide}}" wx:key="key">
+    <view class='order_item_view {{display===true?"display":""}}'>
+      <view class='order_goods_img_view'>
+        <image class='order_goods_img' src='{{item.product.pictureUrl}}@scale200'></image>
+      </view>
+      <view class='order_goods_info_view'>
+        <view class='order_goods_name'>
+          <text>{{item.product.name}}</text>
+        </view>
+        <view class='order_goods_number'>
+          <text>x{{item.number}}</text>
+        </view>
+      </view>
+      <view class='order_goods_price_view'>
+        <text>¥{{item.price}}</text>
+      </view>
+    </view>
+    <view class='order_goods_split {{display===true?"display":""}}'></view>
+  </block>
+  <block wx:if="{{goodsList_hide.length != 0}}">
+    <view class='spread_all_view {{display===true?"":"display"}}'>
+      <view class='spread_view' bindtap='showAllOrder'>
+        <text>展开全部</text>
+      </view>
+      <view class='spread_icon_view' bindtap='showAllOrder'>
+        <image class='spread_icon' src='/images/next.png'></image>
+      </view>
+    </view>
+    <view class='spread_all_view  {{display===true?"display":""}}'>
+      <view class='spread_view' bindtap='hideOrder'>
+        <text>点击收起</text>
+      </view>
+      <view class='spread_icon_view2' bindtap='hideOrder'>
+        <image class='spread_icon' src='/images/next.png'></image>
+      </view>
+    </view>
+  </block>
+
+  <view class='other_fee_view'>
+    <view class='other_fee_view_left'>
+      <text class='other_fee_left'>包装费</text>
+    </view>
+    <view class='other_fee_view_right'>
+      <text class='other_fee_right'>¥{{order.totalPackageFee}}</text>
+    </view>
+  </view>
+  <view class='other_split'></view>
+  <view class='other_fee_view'>
+    <view class='other_fee_view_left'>
+      <text class='other_fee_left'>配送费</text>
+    </view>
+    <view class='other_fee_view_right'>
+      <text class='other_fee_right'>¥{{order.shippingFee}}</text>
+    </view>
+  </view>
+  <view class='other_split' wx:if='{{order.couponInfo&&order.couponInfo.id}}'></view>
+  <view class='other_fee_view' wx:if='{{order.couponInfo&&order.couponInfo.id}}'>
+    <view class='other_fee_view_left'>
+      <text class='other_fee_left'>免单券</text>
+    </view>
+    <view class='other_fee_view_right'>
+      <text class='other_fee_right'>-¥{{order.couponInfo.price}}</text>
+    </view>
+  </view>
+  <view class='other_split'></view>
+  <view class='total_fee_view'>
+    
+    <text class='total_fee_left'>小计 : </text>
+    <text class='total_fee_right'>¥{{order.fee}}</text>
+  </view>
+  <view class='other_split'></view>
+  <view class='contact_shop_view'>
+    <image class='contact_icon' src='/images/phone.png' bindtap='callPhone' data-phone='{{order.shop.tel}}'></image>
+    <text class='contact_text' bindtap='callPhone' data-phone='{{order.shop.tel}}'>联系商家</text>
+  </view>
+</view>
+
+<!-- 分割线 -->
+<view class='module_split'></view>
+
+<!-- 联系人信息 -->
+<view class='order_module3'>
+  <view class='module3_line'>
+    <view class='module3_line_left'>期望时间：</view>
+    <view wx:if='{{order.bookTime}}' class='module3_line_right'>{{order.bookTime}}</view>
+    <view wx:else class='module3_line_right'>立即配送</view>
+  </view>
+  <view class='module3_line'>
+    <view class='module3_line_left'>配送地址：</view>
+    <view class='module3_line_right'>{{order.name}}({{order.gender}}) {{order.tel}}</view>
+  </view>
+  <view class='module3_line'>
+    <view class='module3_line_left'></view>
+    <view class='module3_line_right'>{{order.address}} {{order.address2}}</view>
+  </view>
+</view>
+
+<!-- 分割线 -->
+<view class='module_split'></view>
+
+<!-- 订单信息 -->
+<view class='order_module3'>
+  <view class='module3_line'>
+    <view class='module3_line_left'>订单号码：</view>
+    <view class='module3_line_right'>{{order.number}}</view>
+  </view>
+  <view class='module3_line'>
+    <view class='module3_line_left'>订单时间：</view>
+    <view class='module3_line_right'>{{order.orderTime}}</view>
+  </view>
+  <view class='module3_line'>
+    <view class='module3_line_left'>支付方式：</view>
+    <view class='module3_line_right'>{{order.payType}}</view>
+  </view>
+  <view class='module3_line'>
+    <view class='module3_line_left'>备注信息：</view>
+    <view class='module3_line_right'>{{order.remark}}</view>
+  </view>
+</view>
+
+<!-- 分割线 -->
+<view class='module_split'></view>
+
+<!-- 评论 -->
+<view class='comment_reply_view' wx:if="{{order.evalTime}}">
+  <view class='user_info_view'>
+    <image class='user_logo' src='{{order.user.headUrl}}'></image>
+    <text class='user_name'>{{order.user.nickname}}</text>
+    <text class='comment_time'>{{order.evalTime}}</text>
+  </view>
+  <view class='comment_split'></view>
+  <view class='grade_view'>
+    <view class='grade_left'>
+      <view>评分</view>
+    </view>
+    <view class='grade_right'>
+      <block wx:for="{{order.grade}}" wx:for-item="item" wx:for-index="idx" wx:key="key">
+        <text data-id='{{idx}}' class='star_full nfar star_choose'></text>
+      </block>
+      <block wx:for="{{5-order.grade}}" wx:for-item="item" wx:for-index="idx" wx:key="key">
+        <text data-id='{{idx+order.grade}}' class='star_o nfar star_nochoose'></text>
+      </block>
+    </view>
+  </view>
+  <view class='comment_view'>
+    <view class='comment_left'>
+      <view>评论</view>
+    </view>
+    <view class='comment_right'>
+      <view>{{order.comment}}</view>
+    </view>
+  </view>
+
+  <view class='comment_picture_view'>
+    <block wx:for="{{order.commentPictureUrlList}}" wx:key="key">
+      <image class='comment_picture' src='{{item}}'></image>
+    </block>
+  </view>
+
+  <view class='reply_view' wx:if="{{order.reply}}">
+    <view class='shop_info_view'>
+      <text class='shop_reply'>商家回复</text>
+      <text class='reply_time' wx:if="{{order.replyTime}}">{{order.replyTime}}</text>
+    </view>
+    <view class='reply_content'>
+      <text class='reply_text'>{{order.reply}}</text>
+    </view>
+  </view>
+
+
+</view>
